@@ -32,6 +32,6 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_cigar_tin_tucs');
+        Schema::dropIfExists('news');
     }
 }

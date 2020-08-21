@@ -1,48 +1,155 @@
 
-@import url('https://fonts.googleapis.com/css?family=Mulish=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
 
 html, body {
     width: 100%;
     height: 100%;
-    font-family: 'Mulish';
+    font-family: 'Mulish', sans-serif;
     font-size:  20px;
     color: #222;
 }
 .navbar {
-    background-color: rgba(113, 86, 156, 0.9) !important;
+    height: 80px;
+    background-color: #fa7d09 !important;
+    text-shadow: 1px 1px 1px #000;
 }
 .navbar ul li a {
+    font-size: 30px;
     color: white !important;
 }
 .navbar ul li a:hover {
     color: black !important
 }
-.carousel-inner img {
+.drd-menu1 {
+    background-color: #4a3f35;
+}
+.drd-menu1 button {
+    text-color: white;
+}
+.dropright-submenu {
+    position: relative;
+}
+.ddr-menu2 {
+    background-color: #4a3f35;
+}
+.ddr-menu2 li:hover {
+    color: #4a3f35;
+}
+.ddr-menu2 li a {
+
+    color: white;
+}
+.ddr-menu2 li a:hover {
+    color: black;
+}
+.dropright-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+.carou1 img {
     width: 100%;
 }
 .carousel-caption {
+    text-shadow: 5px 5px 15px #000;
     position: absolute;
     top: 50%;
 }
 .carousel-caption h1 {
-    font-size: 250%;
+    font-size: 350%;
     text-shadow: 5px 5px 15px #000
 }
 .carousel-caption h3 {
-    font-size: 130%;
+    font-size: 250%;
     text-shadow: 2px 2px 10px #000
 }
 .btn-primary {
+    text-shadow: 5px 5px 15px #000;
     background-color: rgb(73, 57, 105);
     border: 1px solid blue
 }
+.thumbnail{
+
+}
+
+.img-thumb {
+    position: relative;
+    overflow: hidden;
+}
+.img-thumbnail {
+    border-radius:0;
+    margin-bottom:5px;
+}
+.btn-outline-light {
+    text-shadow: 5px 5px 15px #000;
+    background-color: #fa7d09;
+    border: 1px solid blue
+}
+
 .btn-primary:hover {
     background-color: rgb(50, 11, 128);
     border: 1px solid blue
 }
+
+.caret{
+    color:white;
+}
+
+.caret:hover{
+    color:black;
+    display: inline;
+}
+
+.panel {
+    width: 100%;
+}
+.đirec-menu1 {
+    background-color: #fa7d09 !important;
+}
+
+.đirec-menu2 {
+    text-align: left;
+    padding-left: 10%;
+    width:100%;
+    font-size: 23px;
+    color: blue;
+    text-shadow: 1px 1px 1px #000;
+    transition-property: all;
+    transition-duration: 0.4s;
+    transition-delay: 0.01s;
+}
+.đirec-menu2:hover{
+    padding-left: 15%;
+    font-size: 28px;
+}
+.ddr-menu2 ul li a {
+    width: 100%;
+    font-size: 20px;
+    color: white !important;
+}
+.ddr-menu2 ul li a:hover {
+    color: black !important
+}
+.đirec-menu3 {
+    background-color: #4a3f35;
+}
+
+.dir-menu1{
+
+}
 .jumbotron {
     padding: 1rem;
     border-radius: 0;
+}
+.panel-default .panel-heading {
+    background-color: #9e4a23;
+    color: #fff;
+    border-color: #9e4a23;
+}
+
+.panel-default .đirec-menu1 {
+    color: #white;
+    border-color: #9e4a23;
 }
 .welcome hr {
     border-top: 2px solid rgb(42, 23, 83, 0.8);
@@ -56,7 +163,7 @@ html, body {
     color: rgb(138, 14, 14);
 }
 .fa-handshake {
-    color: rgb(202, 223, 12);
+    color: rgb(19, 18, 2);
 }
 .fa-handshake, .fa-shield-alt, .fa-thumbs-up {
     font-size: 4em;
@@ -66,15 +173,45 @@ html, body {
     font-size: 60px;
     padding: 3rem;
 }
+.jumbo {
+    background-color: #fa7d09;
+    text-color: white;
+}
 .fa-google-plus-g {
+    font-size: 40px;
     color: rgb(138, 14, 14)
 }
-.fa-twitter-square {
+.fa-twitter{
+    font-size: 42px;
     color: rgb(50, 11, 128)
 }
+
+.fa-facebook-f {
+    font-size: 42px;
+    color: rgb(46, 5, 128)
+}
+.fa-instagram {
+    font-size: 42px;
+    color: rgb(1, 15, 38)
+}
+
+.fa-home{
+    font-size: 40px;
+    color: #9c0404;
+}
+
+.fa-eye {
+    font-size: 30px;
+    color: white;
+
+}
+
+
+
 footer {
-    background-color:  rgba(113, 86, 156, 0.9);
-    color: white
+    text-shadow: 5px 5px 15px #000;
+    background-color: #fa7d09;
+    color: white;
 }
 #form_container
 {
@@ -110,6 +247,7 @@ footer {
     .carousel-caption .btn{
         font-size: 95%;
         padding: 10px 15px
+        text-shadow: 3px 3px 10px #000;
     }
 }
 @media (max-width: 576px) {
@@ -125,5 +263,6 @@ footer {
     .carousel-caption .btn{
         font-size: 80%;
         padding: 5px 10px;
+        text-shadow: 2px 2px 8px #000;
     }
 }
