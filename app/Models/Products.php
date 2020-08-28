@@ -59,6 +59,11 @@ class Products extends Model
     public function images(){
         return $this->hasMany(\App\Models\Product_images::class, 'product_id', 'id')
             ->where('status',1)
+            ->inRandomOrder();
+    }
+    public function imagesdetail(){
+        return $this->hasMany(\App\Models\Product_images::class, 'product_id', 'id')
+            ->where('status',1)
             ->inRandomOrder()
             ->limit(3);
     }

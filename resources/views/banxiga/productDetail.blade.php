@@ -10,7 +10,7 @@
                                 <img src="/{{ $products->images[0]->path }}" title="The Title" class="img-responsive" height="450px" width="450px">
                             </a>
                             <div class="recent_list">
-                                @foreach($products->images as $item)
+                                @foreach($products->imagesdetail as $item)
                                 <div class="photo_container">
                                     <a href="/{{ $item->path }}" rel="gallerySwitchOnMouseOver: true, popupWin:'/{{ $item->path }}', useZoom: 'cloudZoom', smallImage: '/{{ $item->path }}'" class="cloud-zoom-gallery">
                                         <img itemprop="image" src="/{{ $item->path }}" class="img-responsive aaaaa">

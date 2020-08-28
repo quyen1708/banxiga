@@ -124,8 +124,8 @@ class BanXiGaController extends Controller
         $cates = Categories::query()->select('name', 'id')
             ->get();
         $products = Products::query()
+            ->with(['imagesdetail'])
             ->where('id', $id)
-            ->with(['images'])
             ->first();
 //       dd($products);
 
