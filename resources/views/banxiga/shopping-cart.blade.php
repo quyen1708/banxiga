@@ -65,6 +65,7 @@
                 <div class="cart-table">
                     <table>
                         <thead>
+
                         <tr>
                             <th>Image</th>
                             <th class="p-name">Product Name</th>
@@ -73,6 +74,7 @@
                             <th>Total</th>
                             <th>Delete</th>
                         </tr>
+
                         {{--                        <tr>--}}
                         {{--                            <th></th>--}}
                         {{--                            <th></th>--}}
@@ -98,7 +100,9 @@
                                         <div class="quantity">
                                             <div class="pro-qty">
                                                 <input data-id="{{ $item['productInfo']->id }}"
-                                                       id="quanty-item-{{ $item['productInfo']->id }}" type="text"
+                                                       id="quanty-item-{{ $item['productInfo']->id }}"
+                                                       name="quanty-items"
+                                                       type="text"
                                                        value="{{$item['quanty']}}">
                                             </div>
                                         </div>
@@ -111,52 +115,30 @@
                                 </tr>
                             @endforeach
                         @endif
-                        <tr>
-                        <tr>
-                            <td colspan="6"><button id="edit-all" class="btn btn-default" style="background-color: #fa7d09; width: 100%">Save All</button></td>
-                        </tr>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="row">
                     <div class="col-lg-12" id="form_container">
-                        <form role="form" method="post" id="reused_form">
-                            <div class="row">
-                                <div class="col-sm-4 form-group">
-                                    <input type="text" class="form-control" id="txtName" name="txtName"
-                                           placeholder="Your Name*" >
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <input type="email" class="form-control" id="txtEmail" name="txtEmail"
-                                           placeholder="Your Email" >
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <input type="number" class="form-control" id="txtPhone" name="txtPhone"
-                                           placeholder="Your Phone Number*">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 form-group">
-                                    <label for="message">
-                                        Địa chỉ của bạn:</label>
-                                    <textarea class="form-control" type="textarea" name="address" id="address"
-                                              maxlength="6000" rows="2"
-                                              placeholder="Địa chỉ của bạn..."></textarea>
-                                </div>
-                            </div>
-                            <div class="proceed-checkout">
-                                @if(Session::has("Cart") != null)
-                                    <ul>
-                                        <li class="subtotal">Tổng số lượng:
-                                            <span>{{ Session::get('Cart')->totalQuanty }}</span></li>
-                                        <li class="cart-total">Tổng giá: <span>{{ number_format(Session::get('Cart')->totalPrice) }}đ</span>
-                                        </li>
-                                    </ul>
-                                    <button style="width: 100%" type="submit" class="proceed-btn" value="Create"> CHECK OUT →</button>
-                                @endif
-                            </div>
-                        </form>
+                        <div class="proceed-checkout">
+                            @if(Session::has("Cart") != null)
+                                <ul>
+                                    <li class="subtotal">Tổng số lượng:
+                                        <span id="totalQuanty">{{ Session::get('Cart')->totalQuanty }}</span></li>
+                                    <li class="cart-total">Tổng giá: <span id="payment">{{ number_format(Session::get('Cart')->totalPrice) }}đ</span>
+                                    </li>
+                                </ul>
+                                <button type="button" style="width: 100%" class="proceed-btn" id="check-out"> CHECK OUT →</button>
+                            @else
+                                <ul>
+                                    <li class="subtotal">Tổng số lượng:
+                                        <span id="totalQuanty">0</span></li>
+                                    <li class="cart-total">Tổng giá: <span id="payment">0đ</span>
+                                    </li>
+                                </ul>
+                                <button type="button" style="width: 100%" class="proceed-btn" id="check-out"> CHECK OUT →</button>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
@@ -209,7 +191,6 @@
                 location.reload();
             });
         }
-        ;
     }
 
     // function renderListCart(response){
@@ -246,27 +227,38 @@
     //     });
     // }
 
-    $("#edit-all").on("click", function () {
-        var lists = [];
-        $("table tbody tr td").each(function () {
-            $(this).find("input").each(function () {
-                var element = {key: $(this).data("id"), value: $(this).val()};
-                lists.push(element);
+    $('#check-out').on("click", function (){
+        if (confirm('Bạn muốn gửi yêu cầu cho đơn hàng này?')) {
+            var $totalQuanty=$("#totalQuanty").html();
+            if($totalQuanty==='0'){
+                alert("Bạn chưa có sản phẩm nào trong giỏ hàng!");
+                window.location.href = "/home"
+            } else {
+                window.location.href = "/Send-Order"
+            }
+        }
+    })
+        $("input[name = 'quanty-items']").change(function () {
+            console.log('change')
+            var lists = [];
+            $("table tbody tr td").each(function () {
+                $(this).find("input").each(function () {
+                    var element = {key: $(this).data("id"), value: $(this).val()};
+                    lists.push(element);
+                });
+            });
+            // console.log(lists)
+            $.ajax({
+                type: 'POST',
+                url: "Save-All",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "data": lists
+                }
+            }).done(function (response) {
+                location.reload();
             });
         });
-        // console.log(lists)
-        alert("Cập nhập thành công")
-        $.ajax({
-            type: 'POST',
-            url: "Save-All",
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "data": lists
-            }
-        }).done(function (response) {
-            location.reload();
-        });
-    });
 
     {{--$(".delete-all").on("click", function (){--}}
     {{--    var listsDelete = [];--}}
@@ -288,6 +280,8 @@
     {{--        location.reload();--}}
     {{--    });--}}
     {{--});--}}
+// check-out
+
 </script>
 </body>
 

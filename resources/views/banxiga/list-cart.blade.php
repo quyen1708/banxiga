@@ -9,6 +9,7 @@
             <th>Total</th>
             <th>Delete</th>
         </tr>
+
         {{--                        <tr>--}}
         {{--                            <th></th>--}}
         {{--                            <th></th>--}}
@@ -34,7 +35,9 @@
                         <div class="quantity">
                             <div class="pro-qty">
                                 <input data-id="{{ $item['productInfo']->id }}"
-                                       id="quanty-item-{{ $item['productInfo']->id }}" type="text"
+                                       id="quanty-item-{{ $item['productInfo']->id }}"
+                                       name="quanty-items"
+                                       type="text"
                                        value="{{$item['quanty']}}">
                             </div>
                         </div>
@@ -47,49 +50,29 @@
                 </tr>
             @endforeach
         @endif
-        <tr>
-            <td colspan="6"><button id="edit-all" class="btn btn-default" style="background-color: #fa7d09; width: 100%">Save All</button></td>
-        </tr>
         </tbody>
     </table>
 </div>
 <div class="row">
     <div class="col-lg-12" id="form_container">
-        <form role="form" method="post" id="reused_form">
-            <div class="row">
-                <div class="col-sm-4 form-group">
-                    <input type="text" class="form-control" id="txtName" name="txtName"
-                           placeholder="Your Name*" required>
-                </div>
-                <div class="col-sm-4 form-group">
-                    <input type="email" class="form-control" id="txtEmail" name="txtEmail"
-                           placeholder="Your Email" required>
-                </div>
-                <div class="col-sm-4 form-group">
-                    <input type="phone" class="form-control" id="txtPhone" name="txtPhone"
-                           placeholder="Your Phone Number*" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label for="message">
-                        Địa chỉ của bạn:</label>
-                    <textarea class="form-control" type="textarea" name="message" id="message"
-                              maxlength="6000" rows="2"
-                              placeholder="Địa chỉ của bạn..."></textarea>
-                </div>
-            </div>
-            <div class="proceed-checkout">
-                @if(Session::has("Cart") != null)
-                    <ul>
-                        <li class="subtotal">Tổng số lượng:
-                            <span>{{ Session::get('Cart')->totalQuanty }}</span></li>
-                        <li class="cart-total">Tổng giá: <span>{{ number_format(Session::get('Cart')->totalPrice) }}đ</span>
-                        </li>
-                    </ul>
-                    <button style=width: 100%" type="submit" class="proceed-btn" value="Order"> Create Order →</button>
-                @endif
-            </div>
-        </form>
+        <div class="proceed-checkout">
+            @if(Session::has("Cart") != null)
+                <ul>
+                    <li class="subtotal">Tổng số lượng:
+                        <span id="totalQuanty">{{ Session::get('Cart')->totalQuanty }}</span></li>
+                    <li class="cart-total">Tổng giá: <span id="payment">{{ number_format(Session::get('Cart')->totalPrice) }}đ</span>
+                    </li>
+                </ul>
+                <button type="button" style="width: 100%" class="proceed-btn" id="check-out"> CHECK OUT →</button>
+            @else
+                <ul>
+                    <li class="subtotal">Tổng số lượng:
+                        <span id="totalQuanty">0</span></li>
+                    <li class="cart-total">Tổng giá: <span id="payment">0đ</span>
+                    </li>
+                </ul>
+                <button type="button" style="width: 100%" class="proceed-btn" id="check-out"> CHECK OUT →</button>
+            @endif
+        </div>
     </div>
 </div>

@@ -28,6 +28,9 @@ class Orderlist extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function OrderListProduct(){
+        return $this->hasMany(\App\Models\OrderListProduct::class, 'order_id', 'id');
+    }
 
     /*
     |--------------------------------------------------------------------------

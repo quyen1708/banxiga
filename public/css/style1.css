@@ -91,6 +91,14 @@ html, body {
     border: 1px solid blue
 }
 
+.text-gioithieu{
+    display: block;
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .caret{
     color:white;
 }

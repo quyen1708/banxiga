@@ -14,14 +14,15 @@ class OrderList extends Migration
     public function up()
     {
         Schema::create('order_list', function (Blueprint $table) {
-        $table->increments('id');
-        $table->string('cus_name');
-        $table->string('cus_phone');
-        $table->string('cus_email');
-        $table->text('cus_address');
-        $table->tinyInteger('status')->comment('0: Chua xy ly; 1: dang xu ly; 2:da xu ly');
-        $table->timestamps();
-    });
+            $table->increments('id');
+            $table->string('cus_name');
+            $table->string('cus_phone');
+            $table->string('cus_email');
+            $table->text('cus_address');
+            $table->text('payment');
+            $table->tinyInteger('status')->comment('0: Chua xy ly; 1: dang xu ly; 2:da xu ly')->default(0);
+            $table->timestamps();
+        });
     }
 
     /**

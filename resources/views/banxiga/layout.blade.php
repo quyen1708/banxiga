@@ -7,15 +7,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/themify-icons.css" type="text/css">
     <link href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" rel="stylesheet">
-    <script src="/js/jquery-1.10.2.min.js"></script>
-{{--    <script type=”text/javascript” src=”https://code.jquery.com/jquery-3.5.1.min.js”></script>--}}
+{{--    <script src="/js/jquery-1.10.2.min.js"></script>--}}
+    <script type=”text/javascript” src=”https://code.jquery.com/jquery-3.5.1.min.js”></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-
     <!-- JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
@@ -27,6 +22,8 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/js/cloud-zoom.js"></script>
     <link rel="stylesheet" href="/css/style1.css">
     <link rel="stylesheet" href="/css/style2.css">
     <link rel="stylesheet" href="/css/cloud-zoom.css">
@@ -46,55 +43,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/">Giới thiệu</a>
                 </li>&ensp;
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Xì gà Cuba
-                    </a>
-                    <div class="dropdown-menu drd-menu1" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Cohiba</a>
-                        <a class="dropdown-item" href="#">Trinidad</a>
-                        <a class="dropdown-item" href="#">Partagas</a>
-                        <a class="dropdown-item" href="#">Montecristo</a>
-                        <a class="dropdown-item" href="#">H.Upmann</a>
-                        <a class="dropdown-item" href="#">Romeo Y Julieta</a>
-                        <a class="dropdown-item" href="#">Jose L Piedra</a>
-                        <a class="dropdown-item" href="#">Davidoff</a>
-                        <a class="dropdown-item" href="#">Boliva</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/home">Trang Chủ</a>
                 </li>&ensp;
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Xì gà
-                    </a>
-                    <div class="dropdown-menu drd-menu1" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Handelsgold</a>
-                        <a class="dropdown-item" href="#">Villiger</a>
-                        <a class="dropdown-item" href="#">King Edward</a>
-                        <a class="dropdown-item" href="#">Titan Philies</a>
-                        <a class="dropdown-item" href="#">Cosiba</a>
-                        <a class="dropdown-item" href="#">Hav-A-Tampa</a>
-                        <a class="dropdown-item" href="#">Principes</a>
-                        <a class="dropdown-item" href="#">Double Diamond</a>
-                        <a class="dropdown-item" href="#">Black Vessel</a>
-                    </div>
-                </li>&ensp;
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Phụ kiện xì gà
-                    </a>
-                    <div class="dropdown-menu drd-menu1" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Bật lửa xì gà</a>
-                        <a class="dropdown-item" href="#">Dao cắt xì gà</a>
-                        <a class="dropdown-item" href="#">Gạt tàn thuốc xì gà</a>
-                        <a class="dropdown-item" href="#">Bao da - Ống đựng xì gà</a>
-                        <a class="dropdown-item" href="#">Tủ - Hộp giữ ẩm xì gà</a>
-                        <a class="dropdown-item" href="#">Bộ phụ kiện xì gà</a>
-                        <a class="dropdown-item" href="#">Đục lỗ - Tẩu hút xì gà</a>
-                        <a class="dropdown-item" href="#">Phụ kiện khác</a>
-                    </div>&ensp;
                 <li class="nav-item">
                     <a class="nav-link" href="#">Tin tức</a>
                 </li>&ensp;
@@ -156,13 +107,9 @@
                 <div class="dropdown">
                     <a href="/List-Cart" class="dropbtn btn btn-outline-info">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        @if(Session::has("Cart") != null)
                             <i class="badge badge-danger">
-                                <span id="total-quant-show">{{ Session::get('Cart')->totalQuanty }}</span>
+                                <span id="total-quant-show">{{ Session::has('Cart') ? Session::get('Cart')->totalQuanty :'0' }}</span>
                             </i>
-                            @else
-                            <i class="badge badge-danger">0</i>
-                        @endif
                             <span>Giỏ hàng</span>
                     </a>
                     <div class="dropdown-content ">
@@ -182,7 +129,7 @@
                                                 </div>
                                             </td>
                                             <td class="si-text" style="width: 35%">
-                                                <p>{{number_format($item['productInfo']->price)}} x {{$item['quanty']}} </p>
+                                                <p>{{number_format($item['productInfo']->price)}}đ x {{$item['quanty']}} </p>
                                             </td>
                                             <td class="si-close">
                                                 <i class="ti-close" data-id="{{$item['productInfo']->id}}"></i>
@@ -224,7 +171,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <input type="number" id="total-quanty-cart" hidden value="{{ Session::get('Cart')->totalQuanty }}">
                             @endif
+
                         </div>
                     </div>
                 </div>
@@ -265,7 +214,7 @@
                         @if($cates)
                             @foreach ($cates as $cate)
                                 <div class="dropright">
-                                    <a href="/category/{{$cate->id}}/{{$cate->name}}"
+                                    <a href="/category/{{$cate->id}}/{{\Str::slug($cate->name)}}"
                                        class="btn btn-default đirec-menu2">
                                         <span class="caret">{{ $cate->name }}</span>
                                     </a>
@@ -590,7 +539,6 @@
     <!-- Footer -->
 </div>
 <script type="text/javascript" src="/js/javascript.js"></script>
-<script type="text/javascript" src="/js/cloud-zoom.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
 

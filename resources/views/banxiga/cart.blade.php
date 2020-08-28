@@ -13,7 +13,7 @@
             </div>
         </td>
         <td class="si-text" style="width: 35%">
-            <p>{{number_format($item['productInfo']->price)}} x {{$item['quanty']}} </p>
+            <p>{{number_format($item['productInfo']->price)}}đ x {{$item['quanty']}} </p>
         </td>
         <td class="si-close">
             <i class="ti-close" data-id="{{$item['productInfo']->id}}"></i>

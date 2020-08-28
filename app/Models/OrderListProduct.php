@@ -28,7 +28,9 @@ class OrderListProduct extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-
+    public function Orderlist(){
+        return $this->belongsTo(\App\Models\Orderlist::class, 'product_id', 'id');
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS

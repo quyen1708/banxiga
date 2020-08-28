@@ -245,6 +245,7 @@
 			}
 		}
 		$button.parent().find('input').val(newVal);
+        $("input[name = 'quanty-items']").change();
 	});
 
 })(jQuery);

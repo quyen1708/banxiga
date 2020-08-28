@@ -40,9 +40,12 @@ Route::get('/Delete-Item-List-Cart/{id}', 'BanXiGaController@DeleteItemListCart'
 
 Route::post('/Save-All', 'BanXiGaController@SaveAllListItemCart');
 
-Route::post('/Delete-All', 'BanXiGaController@DeleteAllListItemCart');
 
-Route::post('/Create-Order', 'BanXiGaController@CreateOrder');
+Route::post('/Check-out', 'BanXiGaController@CheckOut');
 
-Route::get('/create', 'BanXiGaController@create');
+Route::get('/Send-Order', 'BanXiGaController@SendOrder');
+
+Route::get('/', 'BanXiGaController@ListGioiThieu');
+
+
 

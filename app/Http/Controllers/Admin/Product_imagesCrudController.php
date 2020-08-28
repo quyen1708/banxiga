@@ -72,7 +72,15 @@ class Product_imagesCrudController extends CrudController
         'name'           => 'path',
         'height'         => '100px',
         'width'          => '100px',
-    ]);
+        ]);
+
+        $this->crud->addColumn([
+            'name'  => 'status',
+            'label' => 'Status',
+            'type'  => 'boolean',
+            'options' => [1 => 'Active', 0 => 'Inactive']
+            // optionally override the Yes/No texts
+        ]);
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -99,6 +107,13 @@ class Product_imagesCrudController extends CrudController
             // 'wrapperAttributes' => [
             //     'class' => 'form-group col-md-6'
             //   ], // extra HTML attributes for the field wrapper - mostly for resizing field
+        ]);
+        $this->crud->addField([
+            'name'  => 'status',
+            'label' => 'Status',
+            'type'  => 'boolean',
+            'options' => [1 => 'Active', 0 => 'Inactive']
+            // optionally override the Yes/No texts
         ]);
 
         $this->crud->addField([
@@ -142,6 +157,13 @@ class Product_imagesCrudController extends CrudController
             'attribute'      => 'name',// foreign key attribute that is shown to user
         ]);
         $this->crud->addColumn([
+            'name'  => 'status',
+            'label' => 'Status',
+            'type'  => 'boolean',
+            'options' => [1 => 'Active', 0 => 'Inactive']
+            // optionally override the Yes/No texts
+        ]);
+        $this->crud->addColumn([
             // 1-n relationship
             'label'          => 'Images', // Table column heading
             'type'           => 'image',
@@ -149,6 +171,7 @@ class Product_imagesCrudController extends CrudController
             'height'         => '100px',
             'width'          => '100px',
         ]);
+
         // $this->crud->removeColumn('date');
         // $this->crud->removeColumn('extras');
     }

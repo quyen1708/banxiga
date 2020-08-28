@@ -16,17 +16,17 @@
                             <figure class="effect-julia">
                                 <img src="/{{ $ele->images[0]->path }}" height="400px" alt=""/>
                                 <figcaption>
-                                    <a href="/detail/{{$ele->id}}/{{$ele->name}}">View more</a>
+                                    <a href="/detail/{{$ele->id}}/{{\Str::slug($ele->name)}}">View more</a>
                                 </figcaption>
                             </figure>
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">{{ $ele->name }}</h4>
-                            <p class="card-text">{{ $ele->price }}</p>
-                            <a href="" class="btn btn-primary">
+                            <p class="card-text">{{ number_format($ele->price) }}đ</p>
+                            <a onclick="handleCLickAddCart({{$ele->id}})" href="/Send-Order" class="btn btn-primary">
                                 <span>Mua ngay</span>
                             </a>
-                            <a href="" class="btn btn-outline-info ml-3"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <a onclick="handleCLickAddCart({{$ele->id}})" href="javascript:" class="btn btn-outline-info ml-3"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 <span class="badge badge-danger">0</span>
                                 <span>Add to card</span>
                             </a>

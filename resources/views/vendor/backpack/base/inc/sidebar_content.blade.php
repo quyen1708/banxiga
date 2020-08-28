@@ -8,4 +8,4 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('product_images') }}'><i class='nav-icon la la-question'></i> Product_images</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('orderlist') }}'><i class='nav-icon la la-question'></i> Orderlists</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('orderlistproduct') }}'><i class='nav-icon la la-question'></i> OrderListProducts</a></li>
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('orderlistproduct') }}'><i class='nav-icon la la-question'></i> OrderListProducts</a></li>--}}

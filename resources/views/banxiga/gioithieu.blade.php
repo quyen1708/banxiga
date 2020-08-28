@@ -195,43 +195,33 @@
             </div>
         </div>
     </div>
+
     <div class="container-fluid padding">
         <div class="row padding">
+            @foreach($products as $product)
+                @foreach($product as $item)
             <div class="col-md-4">
                 <div class="card">
-                    <img src="/images/banchay/1.jpg " class="card-img-top" height="500 ">
+                    <img src="{{ $item->images[0]->path }}" class="card-img-top" height="500 ">
                     <div class="card-body">
-                        <h4 class="card-title">COHIBA BEHIKE 52</h4>
-                        <p class="card-text">Size: 4 3/4 inch x 52</p>
-                        <p class="card-text">Xuất xứ: Cuba</p>
-                        <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
+                        <h4 class="card-title">{{ $item->name }}</h4>
+                        <p class="card-text">{{ number_format($item->price) }}đ</p>
+                        <div class="text-center">
+                            <a href="/detail/{{$item->id}}/{{\Str::slug($item->name)}}" class="btn btn-primary mr-4">Xem thêm</a>
+                            <a type="button" onclick="handleCLickAddCart({{$item->id}})" href="javascript:" class="btn btn-outline-info ml-2"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                <span>Add to card</span>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="/images/banchay/2.jpg " class="card-img-top" height="500 ">
-                    <div class="card-body">
-                        <h4 class="card-title">OPUSX THE LOST CITY</h4>
-                        <p class="card-text">Size: 5 3/4 X 52</p>
-                        <p class="card-text">Xuất xứ: Mỹ</p>
-                        <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="/images/banchay/3.jpg " class="card-img-top" height="500 ">
-                    <div class="card-body">
-                        <h4 class="card-title">OLIVA V BELICOSO</h4>
-                        <p class="card-text">Size : 5 x 50</p>
-                        <p class="card-text">Nicaragua</p>
-                        <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
+                @endforeach
+            @endforeach
         </div>
     </div>
+
+
     <hr class="my-02">
     <div class="container-fluid padding">
         <div class="welcome row text-center">
@@ -242,71 +232,18 @@
     </div>
     <div class="container-fluid padding">
         <div class="row padding">
-            <div class="col-md-2">
-                <div class="card">
-                    <img src="/images/cohiba/1/1.jpg" class="card-img-top" height="250">
-                    <div class="card-body">
-                        <h4 class="card-title">Cohiba Black Pequenos</h4>
-                        <p class="card-text">Kích thước : 9.5cm ring 38</p>
-                        <p class="card-text"><Xuất xứ: Cuba</p>
-                        <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
+            @foreach($randproducts as $item)
+                    <div class="col-md-2">
+                        <div class="card">
+                            <img src="{{ $item->images[0]->path }}" class="card-img-top" height="250">
+                            <div class="card-body" style="height: 300px">
+                                <h4 class="card-title">{{ $item->name }}</h4>
+                                <p class="card-text">{{ number_format($item->price) }}đ</p>
+                                <a href="/detail/{{$item->id}}/{{\Str::slug($item->name)}}" class="btn btn-outline-secondary" style="position: absolute; bottom: 20px">Xem thêm</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card">
-                    <img src="/images/cohiba/2/1.jpg" class="card-img-top" height="250">
-                    <div class="card-body">
-                        <h4 class="card-title"> Cohiba Pequenos</h4>
-                        <p class="card-text">Kích thước : 9.5cm ring 38</p>
-                        <p class="card-text"><Xuất xứ: Cuba</p>
-                        <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card">
-                    <img src="/images/cohiba/1/1.jpg" class="card-img-top" height="250">
-                    <div class="card-body">
-                        <h4 class="card-title">Cohiba Black Pequenos</h4>
-                        <p class="card-text">Kích thước : 9.5cm ring 38</p>
-                        <p class="card-text"><Xuất xứ: Cuba</p>
-                        <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card">
-                    <img src="/images/cohiba/2/1.jpg" class="card-img-top" height="250">
-                    <div class="card-body">
-                        <h4 class="card-title"> Cohiba Pequenos</h4>
-                        <p class="card-text">Kích thước : 9.5cm ring 38</p>
-                        <p class="card-text"><Xuất xứ: Cuba</p>
-                        <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
-                    </div>
-                </div>
-            </div> <div class="col-md-2">
-                <div class="card">
-                    <img src="/images/cohiba/1/1.jpg" class="card-img-top" height="250">
-                    <div class="card-body">
-                        <h4 class="card-title">Cohiba Black Pequenos</h4>
-                        <p class="card-text">Kích thước : 9.5cm ring 38</p>
-                        <p class="card-text"><Xuất xứ: Cuba</p>
-                        <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card">
-                    <img src="/images/cohiba/2/1.jpg" class="card-img-top" height="250">
-                    <div class="card-body">
-                        <h4 class="card-title"> Cohiba Pequenos</h4>
-                        <p class="card-text">Kích thước : 9.5cm ring 38</p>
-                        <p class="card-text"><Xuất xứ: Cuba</p>
-                        <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>

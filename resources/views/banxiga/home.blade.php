@@ -14,15 +14,15 @@
                                 <figure class="effect-julia">
                                     <img src="/{{ $ele->images[0]->path }}" height="400px" alt=""/>
                                     <figcaption>
-                                        <a href="/detail/{{$ele->id}}/{{$ele->name}}">View more</a>
+                                        <a href="/detail/{{$ele->id}}/{{\Str::slug($ele->name)}}">View more</a>
                                     </figcaption>
                                 </figure>
                             </div>
                             <div class="card-body" style="height: 260px">
                                 <h4 class="card-title">{{ $ele->name }}</h4>
-                                <p class="card-text">{{ $ele->price }}</p>
+                                <p class="card-text">{{ number_format($ele->price) }}đ</p>
                                 <div style="position: absolute; bottom: 20px">
-                                    <a href="" class="btn btn-primary">
+                                    <a onclick="handleCLickAddCart({{$ele->id}})" href="/Send-Order" class="btn btn-primary">
                                         <span>Mua ngay</span>
                                     </a>
                                     <a type="button" onclick="handleCLickAddCart({{$ele->id}})" href="javascript:" class="btn btn-outline-info ml-3"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>

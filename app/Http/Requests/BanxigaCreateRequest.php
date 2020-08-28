@@ -14,7 +14,7 @@ class BanxigaCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,19 +25,19 @@ class BanxigaCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'cus_name'=>'required',
-            'cus_phone'=>'required',
-            'cus_email'=>'required'|'email:rfc,dns',
-            'cus_address'=>'required',
+            'name'=>'bail|required',
+            'phone'=>'bail|required',
+            'email'=>'bail|required|email',
+            'address'=>'bail|required',
         ];
     }
     public function messages()
     {
         return [
-            'cus_name.required'=>'Tên không được để trống!',
-            'cus_phone.required'=>'Email không được để trống!',
-            'cus_email.max'=>'Số điện thoại không được để trống!',
-            'cus_address.max'=>'Địa chỉ không được để trống!',
+            'name.required'=>'Tên không được để trống!',
+            'phone.required'=>'Số điện thoại không được để trống!',
+            'email.required'=>'Email không được để trống!',
+            'address.required'=>'Địa chỉ không được để trống!',
         ];
     }
 }

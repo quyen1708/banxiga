@@ -57,6 +57,9 @@ class Products extends Model
          return $this->belongsTo(\App\Models\Categories::class, 'category_id', 'id');
     }
     public function images(){
-        return $this->hasMany(\App\Models\Product_images::class, 'product_id', 'id');
+        return $this->hasMany(\App\Models\Product_images::class, 'product_id', 'id')
+            ->where('status',1)
+            ->inRandomOrder()
+            ->limit(3);
     }
 }
