@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'BanXiGaController@gioithieu');
 
-Route::get('/home', 'BanXiGaController@home');
+//Route::get('/home', 'BanXiGaController@home');
 
-Route::get('/home', 'BanXiGaController@categories');
+Route::get('/home', 'BanXiGaController@home');
 
 //Route::get('/banxiga/home', 'BanXiGaController@product');
 
@@ -42,8 +42,11 @@ Route::post('/Save-All', 'BanXiGaController@SaveAllListItemCart');
 
 
 Route::post('/Check-out', 'BanXiGaController@CheckOut');
+/*->middleware('CheckCart');*/
 
-Route::get('/Send-Order', 'BanXiGaController@SendOrder');
+Route::get('/Order', 'BanXiGaController@Order')->middleware('CheckCart');
+
+Route::post('/Send-Order', 'BanXiGaController@SendOrder');
 
 Route::get('/', 'BanXiGaController@ListGioiThieu');
 

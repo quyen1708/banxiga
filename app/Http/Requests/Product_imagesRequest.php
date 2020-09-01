@@ -26,7 +26,8 @@ class Product_imagesRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'product_id' => 'required',
+            'path' => 'required',
         ];
     }
 
@@ -50,7 +51,8 @@ class Product_imagesRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'product_id.required'=>'Chọn một sản phẩm!',
+            'path.required'=>'Ảnh không được để trống',
         ];
     }
 }

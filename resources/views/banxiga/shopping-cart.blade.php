@@ -230,11 +230,11 @@
     $('#check-out').on("click", function (){
         if (confirm('Bạn muốn gửi yêu cầu cho đơn hàng này?')) {
             var $totalQuanty=$("#totalQuanty").html();
-            if($totalQuanty==='0'){
+            if($totalQuanty=='0'){
                 alert("Bạn chưa có sản phẩm nào trong giỏ hàng!");
                 window.location.href = "/home"
             } else {
-                window.location.href = "/Send-Order"
+                window.location.href = "/Order"
             }
         }
     })

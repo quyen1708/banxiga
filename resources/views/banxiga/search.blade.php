@@ -22,14 +22,14 @@
                             <figure class="effect-julia">
                                 <img src="/{{ $item->images[0]->path }}" height="400px" alt=""/>
                                 <figcaption>
-                                    <a href="/detail/{{$ele->id}}/{{\Str::slug($ele->name)}}">View more</a>
+                                    <a href="/detail/{{$item->id}}/{{\Str::slug($item->name)}}">View more</a>
                                 </figcaption>
                             </figure>
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">{{ $item->name }}</h4>
                             <p class="card-text">{{ number_format($item->price) }}đ</p>
-                            <a onclick="handleCLickAddCart({{$item->id}})" href="/Send-Order" class="btn btn-primary">
+                            <a onclick="handleCLickBuyNow({{$item->id}})" href="javascript:" class="btn btn-primary">
                                 <span>Mua ngay</span>
                             </a>
                             <a onclick="handleCLickAddCart({{$item->id}})" href="javascript:" class="btn btn-outline-info ml-3"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>

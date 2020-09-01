@@ -7,7 +7,7 @@
                     <div class="col-5">
                         <div class="gallery-sample">
                             <a href="/{{ $products->images[0]->path }}" class="cloud-zoom" id="cloudZoom">
-                                <img src="/{{ $products->images[0]->path }}" title="The Title" class="img-responsive" height="450px" width="450px">
+                                <img src="/{{ $products->images[0]->path }}" title="The Title" class="img-responsive" height="480px" width="480px">
                             </a>
                             <div class="recent_list">
                                 @foreach($products->imagesdetail as $item)
@@ -26,7 +26,7 @@
                         <br>
                         {!! $products->description !!}
                         <a onclick="handleCLickAddCart({{$products->id}})" href="javascript:" class="addtocart btn-secondary"><i class="fas fa-heart"></i> Add to Cart</a>
-                        <a onclick="handleCLickAddCart({{$products->id}})" href="/Send-Order" class="buynow"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+                        <a onclick="handleCLickBuyNow({{$products->id}})" href="javascript:" class="buynow"><i class="fas fa-shopping-cart"></i> Buy Now</a>
                     </div>
                 </div>
             </div>

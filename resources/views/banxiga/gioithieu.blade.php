@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/style1.css">
+    <script type="text/javascript" src="/js/javascript.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 <body>
 <!-- Navigation -->
@@ -26,52 +28,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/">Giới thiệu</a>
                 </li>&ensp;
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Xì gà Cuba
-                    </a>
-                    <div class="dropdown-menu drd-menu1" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Cohiba</a>
-                        <a class="dropdown-item" href="#">Trinidad</a>
-                        <a class="dropdown-item" href="#">Partagas</a>
-                        <a class="dropdown-item" href="#">Montecristo</a>
-                        <a class="dropdown-item" href="#">H.Upmann</a>
-                        <a class="dropdown-item" href="#">Romeo Y Julieta</a>
-                        <a class="dropdown-item" href="#">Jose L Piedra</a>
-                        <a class="dropdown-item" href="#">Davidoff</a>
-                        <a class="dropdown-item" href="#">Boliva</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/home">Trang Chủ</a>
                 </li>&ensp;
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Xì gà
-                    </a>
-                    <div class="dropdown-menu drd-menu1" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Handelsgold</a>
-                        <a class="dropdown-item" href="#">Villiger</a>
-                        <a class="dropdown-item" href="#">King Edward</a>
-                        <a class="dropdown-item" href="#">Titan Philies</a>
-                        <a class="dropdown-item" href="#">Cosiba</a>
-                        <a class="dropdown-item" href="#">Hav-A-Tampa</a>
-                        <a class="dropdown-item" href="#">Principes</a>
-                        <a class="dropdown-item" href="#">Double Diamond</a>
-                        <a class="dropdown-item" href="#">Black Vessel</a>
-                    </div>
-                </li>&ensp;
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Phụ kiện xì gà
-                    </a>
-                    <div class="dropdown-menu drd-menu1" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Bật lửa xì gà</a>
-                        <a class="dropdown-item" href="#">Dao cắt xì gà</a>
-                        <a class="dropdown-item" href="#">Gạt tàn thuốc xì gà</a>
-                        <a class="dropdown-item" href="#">Bao da - Ống đựng xì gà</a>
-                        <a class="dropdown-item" href="#">Tủ - Hộp giữ ẩm xì gà</a>
-                        <a class="dropdown-item" href="#">Bộ phụ kiện xì gà</a>
-                        <a class="dropdown-item" href="#">Đục lỗ - Tẩu hút xì gà</a>
-                        <a class="dropdown-item" href="#">Phụ kiện khác</a>
-                    </div>&ensp;
                 <li class="nav-item">
                     <a class="nav-link" href="#">Tin tức</a>
                 </li>&ensp;
@@ -208,9 +167,6 @@
                         <p class="card-text">{{ number_format($item->price) }}đ</p>
                         <div class="text-center">
                             <a href="/detail/{{$item->id}}/{{\Str::slug($item->name)}}" class="btn btn-primary mr-4">Xem thêm</a>
-                            <a type="button" onclick="handleCLickAddCart({{$item->id}})" href="javascript:" class="btn btn-outline-info ml-2"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                <span>Add to card</span>
-                            </a>
                         </div>
 
                     </div>

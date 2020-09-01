@@ -26,7 +26,12 @@ class ProductsRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'category_id'   => 'required',
+            'name'          => 'required',
+            'description'   => 'required',
+            'price'         => 'required',
+            'amont'         => 'required',
+
         ];
     }
 
@@ -50,7 +55,11 @@ class ProductsRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'category_id.required'   => 'Category không được để trống!',
+            'name.required'          => 'Tên sản phẩm không được để trống!',
+            'description.required'   => 'Mô tả không được để trống!',
+            'price.required'         => 'Giá sản phẩm không được để trống',
+            'amont.required'         => 'Số lượng không được để trống!',
         ];
     }
 }

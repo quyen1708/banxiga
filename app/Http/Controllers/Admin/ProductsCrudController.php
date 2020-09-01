@@ -51,25 +51,14 @@ class ProductsCrudController extends CrudController
             'visibleInModal' => false,
         ]);
         CRUD::column('name')->type('text');
-        CRUD::column('description')->type('markdown');
         CRUD::column('price')->type('number');
+        CRUD::column('amont')->type('number');
         $this->crud->addColumn([
             'name'  => 'status',
             'label' => 'Status',
             'type'  => 'boolean',
             'options' => [1 => 'Active', 0 => 'Inactive'],
             // optionally override the Yes/No texts
-        ]);
-        CRUD::column('display_order')->type('number');
-
-
-
-        $this->crud->addColumn([
-            // 1-n relationship
-            'label'          => 'Images', // Table column heading
-            'type'           => 'demo',
-            'entity'         => 'images', // the method that defines the relationship in your Model
-            'attribute'      => 'path',
         ]);
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -178,9 +167,9 @@ class ProductsCrudController extends CrudController
             'label' => 'Description',
             'name' => 'description',
             'type' => 'markdown',
-
         ]);
         $this->crud->addColumn('price');
+        $this->crud->addColumn('amont');
         $this->crud->addColumn([
             'name'  => 'status',
             'label' => 'Status',

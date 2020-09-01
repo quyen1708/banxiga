@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BanxigaCreateRequest;
+use App\LogUser;
 use App\Models\Categories;
 use App\Models\Orderlist;
 use App\Models\OrderListProduct;
@@ -15,18 +16,89 @@ use App\Cart;
 
 class BanXiGaController extends Controller
 {
-    public function home()
-    {
-        return view('/banxiga/home');
-    }
+//    public function home()
+//    {
+//        return view('/banxiga/home');
+//    }
+
+//    public function webJoin()
+//    {
+////        $dayJoin = count(LogUser::query()->select('id')
+////            ->where('created_at', '>=', Carbon::now()->subDay()->toDateTimeString())
+////            ->get()
+////            ->toArray());
+//////        dd($dayJoin);
+////        $weekJoin = count(LogUser::query()->select('id')
+////            ->where('created_at', '>=', Carbon::now()->subWeek()->toDateTimeString())
+////            ->get()
+////            ->toArray());
+////        $monthJoin = count(LogUser::query()->select('id')
+////            ->where('created_at', '>=', Carbon::now()->subMonth()->toDateTimeString())
+////            ->get()
+////            ->toArray());
+////        $totalJoin = count(LogUser::query()->select('id')
+////            ->get()
+////            ->toArray());
+////        $webJoin[]=[$dayJoin, $weekJoin, $monthJoin, $totalJoin];
+////        dd($webJoin);
+////        $logUser = new LogUser();
+////        $logUser->ip = $request->ip();
+////        $logUser->useragent = $request->server('HTTP_USER_AGENT');
+////        $logUser->save();
+////        return $webJoin[];
+//    }
 
     public function gioithieu()
     {
         return view('/banxiga/gioithieu');
     }
 
-    public function categories()
+    public function home(Request $request)
     {
+        $date = Carbon::now()->toDateTimeString();
+
+//        dd($date);
+        $nowJoin = count(LogUser::query()->select('id')
+            ->whereBetween('created_at', [now()->subMinutes(15), now()])
+            ->get()
+            ->toArray());
+        $dayJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subDay()->toDateTimeString())
+            ->get()
+            ->toArray());
+//        dd($dayJoin);
+        $weekJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subWeek()->toDateTimeString())
+            ->get()
+            ->toArray());
+        $monthJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subMonth()->toDateTimeString())
+            ->get()
+            ->toArray());
+        $totalJoin = count(LogUser::query()->select('id')
+            ->get()
+            ->toArray());
+        $webJoin=[$nowJoin, $dayJoin, $weekJoin, $monthJoin, $totalJoin];
+//        dd($webJoin);
+        if(($logUsr = count(LogUser::query()
+                ->select('id')
+                ->where('ip', $request->ip())
+                ->get()
+                ->toArray())) == 0 || $logUsr = count(LogUser::query()
+                    ->select('id')
+                    ->where('ip', $request->ip())
+                    ->whereBetween('created_at', [now()->subMinutes(15), now()])
+                    ->get()
+                    ->toArray()) == 0) {
+            $logUser = new LogUser();
+            $logUser->ip = $request->ip();
+            $logUser->useragent = $request->server('HTTP_USER_AGENT');
+            $logUser->save();
+        }else{
+            LogUser::query()->where('ip', $request->ip())->orderBy('id', 'DESC')->first()
+            ->update(['updated_at' => $date]);
+        }
+
         $cates = Categories::query()
             ->where('status', 1)
             ->select('name', 'id')
@@ -40,31 +112,90 @@ class BanXiGaController extends Controller
             $products[] = Products::query()
                 ->with(['category', 'images'])
                 ->where('category_id', $category_id)
+                ->where('amont','>',0)
                 ->inRandomOrder()
                 ->limit(3)
                 ->get();
         }
 //       dd($products);
+        $topProducts []= Products::query()
+            ->with('images')
+            ->orderBy('selled', 'DESC')
+            ->where('amont','>',0)
+            ->limit(4)
+            ->get();
+
+//        dd($topProducts);
         return view('/banxiga/home', [
+            'webJoin' => $webJoin,
+            'topProducts' => $topProducts,
             'cates' => $cates,
             'products' => $products
         ]);
     }
 
-    public function ListGioiThieu()
+    public function ListGioiThieu(Request $request)
     {
+        $date = Carbon::now()->toDateTimeString();
+
+//        dd($date);
+//        $logUsers[] = LogUser::query()->where('created_at', '>=', Carbon::today())->get()->toArray();
+//        $a = count($logUsers[0]);
+        $nowJoin = count(LogUser::query()->select('id')
+            ->whereBetween('created_at', [now()->subMinutes(15), now()])
+            ->get()
+            ->toArray());
+        $dayJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subDay()->toDateTimeString())
+            ->get()
+            ->toArray());
+//        dd($dayJoin);
+        $weekJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subWeek()->toDateTimeString())
+            ->get()
+            ->toArray());
+        $monthJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subMonth()->toDateTimeString())
+            ->get()
+            ->toArray());
+        $totalJoin = count(LogUser::query()->select('id')
+            ->get()
+            ->toArray());
+        $webJoin=[$nowJoin, $dayJoin, $weekJoin, $monthJoin, $totalJoin];
+//        dd($webJoin);
+        if(($logUsr = count(LogUser::query()
+                ->select('id')
+                ->where('ip', $request->ip())
+                ->get()
+                ->toArray())) == 0 || $logUsr = count(LogUser::query()
+                    ->select('id')
+                    ->where('ip', $request->ip())
+                    ->whereBetween('created_at', [now()->subMinutes(15), now()])
+                    ->get()
+                    ->toArray()) == 0) {
+            $logUser = new LogUser();
+            $logUser->ip = $request->ip();
+            $logUser->useragent = $request->server('HTTP_USER_AGENT');
+            $logUser->save();
+        }else{
+            LogUser::query()->where('ip', $request->ip())->orderBy('id', 'DESC')->first()
+                ->update(['updated_at' => $date]);
+        }
         $products[] = Products::query()
+            ->where('amont','>',0)
             ->with('images')
             ->orderBy('selled', 'DESC')
             ->limit(3)
             ->get();
-            $randproducts = Products::query()
-                ->with('images')
-                ->inRandomOrder()
-                ->limit(6)
-                ->get();
+        $randproducts = Products::query()
+            ->where('amont','>',0)
+            ->with('images')
+            ->inRandomOrder()
+            ->limit(6)
+            ->get();
 //        dd($randproducts);
         return view('banxiga/gioithieu', [
+            'webJoin' => $webJoin,
             'products' => $products,
             'randproducts' => $randproducts
         ]);
@@ -81,46 +212,205 @@ class BanXiGaController extends Controller
 //    }
     public function search(Request $request)
     {
+        $date = Carbon::now()->toDateTimeString();
+
+//        dd($date);
+//        $logUsers[] = LogUser::query()->where('created_at', '>=', Carbon::today())->get()->toArray();
+//        $a = count($logUsers[0]);
+        $nowJoin = count(LogUser::query()->select('id')
+            ->whereBetween('created_at', [now()->subMinutes(15), now()])
+            ->get()
+            ->toArray());
+        $dayJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subDay()->toDateTimeString())
+            ->get()
+            ->toArray());
+//        dd($dayJoin);
+        $weekJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subWeek()->toDateTimeString())
+            ->get()
+            ->toArray());
+        $monthJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subMonth()->toDateTimeString())
+            ->get()
+            ->toArray());
+        $totalJoin = count(LogUser::query()->select('id')
+            ->get()
+            ->toArray());
+        $webJoin=[$nowJoin, $dayJoin, $weekJoin, $monthJoin, $totalJoin];
+//        dd($webJoin);
+        if(($logUsr = count(LogUser::query()
+                ->select('id')
+                ->where('ip', $request->ip())
+                ->get()
+                ->toArray())) == 0 || $logUsr = count(LogUser::query()
+                    ->select('id')
+                    ->where('ip', $request->ip())
+                    ->whereBetween('created_at', [now()->subMinutes(15), now()])
+                    ->get()
+                    ->toArray()) == 0) {
+            $logUser = new LogUser();
+            $logUser->ip = $request->ip();
+            $logUser->useragent = $request->server('HTTP_USER_AGENT');
+            $logUser->save();
+        }else{
+            LogUser::query()->where('ip', $request->ip())->orderBy('id', 'DESC')->first()
+                ->update(['updated_at' => $date]);
+        }
+
         $q = $request->get('search', '');
 
-        $cates = Categories::query()->where('status', 0)->select('name', 'id')->get();
+        $cates = Categories::query()
+            ->where('status', 1)
+            ->select('name', 'id')
+            ->get();
 
         $total = Products::with('images')
             ->where('status', 1)
+            ->where('amont','>',0)
             ->where('name', 'LIKE', '%' . $q . '%')
             ->orWhere('description', 'LIKE', '%' . $q . '%')
             ->count();
 
         $products = Products::with('images')
             ->where('status', 1)
+            ->where('amont','>',0)
             ->where('name', 'LIKE', '%' . $request->search . '%')
             ->orWhere('description', 'LIKE', '%' . $q . '%')
             ->paginate(6);
 
+        $topProducts[]= Products::query()
+            ->with('images')
+            ->where('amont','>',0)
+            ->orderBy('selled', 'DESC')
+            ->limit(4)
+            ->get();
+
         return view('/banxiga/search', [
-            'cates' => $cates,
-            'products' => $products,
-            'total' => $total,
+            'webJoin' => $webJoin,
+            'topProducts'   => $topProducts,
+            'cates'         => $cates,
+            'products'      => $products,
+            'total'         => $total,
         ]);
     }
 
-    public function categoryClass($id)
+    public function categoryClass(Request $request, $id)
     {
+        $date = Carbon::now()->toDateTimeString();
+
+//        dd($date);
+//        $logUsers[] = LogUser::query()->where('created_at', '>=', Carbon::today())->get()->toArray();
+//        $a = count($logUsers[0]);
+        $nowJoin = count(LogUser::query()->select('id')
+            ->whereBetween('created_at', [now()->subMinutes(15), now()])
+            ->get()
+            ->toArray());
+        $dayJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subDay()->toDateTimeString())
+            ->get()
+            ->toArray());
+//        dd($dayJoin);
+        $weekJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subWeek()->toDateTimeString())
+            ->get()
+            ->toArray());
+        $monthJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subMonth()->toDateTimeString())
+            ->get()
+            ->toArray());
+        $totalJoin = count(LogUser::query()->select('id')
+            ->get()
+            ->toArray());
+        $webJoin=[$nowJoin, $dayJoin, $weekJoin, $monthJoin, $totalJoin];
+//        dd($webJoin);
+        if(($logUsr = count(LogUser::query()
+                ->select('id')
+                ->where('ip', $request->ip())
+                ->get()
+                ->toArray())) == 0 || $logUsr = count(LogUser::query()
+                    ->select('id')
+                    ->where('ip', $request->ip())
+                    ->whereBetween('created_at', [now()->subMinutes(15), now()])
+                    ->get()
+                    ->toArray()) == 0) {
+            $logUser = new LogUser();
+            $logUser->ip = $request->ip();
+            $logUser->useragent = $request->server('HTTP_USER_AGENT');
+            $logUser->save();
+        }else{
+            LogUser::query()->where('ip', $request->ip())->orderBy('id', 'DESC')->first()
+                ->update(['updated_at' => $date]);
+        }
         $cates = Categories::query()->where('status', 1)->select('name', 'id')
             ->get();
         $products[] = Products::query()
             ->where('status', 1)
+            ->where('amont','>',0)
             ->with(['category', 'images'])
             ->Where('category_id', $id)
             ->paginate(6);
+        $topProducts[]= Products::query()
+            ->with('images')
+            ->where('amont','>',0)
+            ->orderBy('selled', 'DESC')
+            ->limit(4)
+            ->get();
         return view('/banxiga/categoryClass', [
-            'cates' => $cates,
-            'products' => $products
+            'webJoin' => $webJoin,
+            'topProducts'   => $topProducts,
+            'cates'         => $cates,
+            'products'      => $products
         ]);
     }
 
-    public function productDetail($id)
+    public function productDetail(Request $request, $id)
     {
+        $date = Carbon::now()->toDateTimeString();
+
+//        dd($date);
+//        $logUsers[] = LogUser::query()->where('created_at', '>=', Carbon::today())->get()->toArray();
+//        $a = count($logUsers[0]);
+        $nowJoin = count(LogUser::query()->select('id')
+            ->whereBetween('created_at', [now()->subMinutes(15), now()])
+            ->get()
+            ->toArray());
+        $dayJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subDay()->toDateTimeString())
+            ->get()
+            ->toArray());
+//        dd($dayJoin);
+        $weekJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subWeek()->toDateTimeString())
+            ->get()
+            ->toArray());
+        $monthJoin = count(LogUser::query()->select('id')
+            ->where('created_at', '>=', Carbon::now()->subMonth()->toDateTimeString())
+            ->get()
+            ->toArray());
+        $totalJoin = count(LogUser::query()->select('id')
+            ->get()
+            ->toArray());
+        $webJoin=[$nowJoin, $dayJoin, $weekJoin, $monthJoin, $totalJoin];
+//        dd($webJoin);
+        if(($logUsr = count(LogUser::query()
+                ->select('id')
+                ->where('ip', $request->ip())
+                ->get()
+                ->toArray())) == 0 || $logUsr = count(LogUser::query()
+                    ->select('id')
+                    ->where('ip', $request->ip())
+                    ->whereBetween('created_at', [now()->subMinutes(15), now()])
+                    ->get()
+                    ->toArray()) == 0) {
+            $logUser = new LogUser();
+            $logUser->ip = $request->ip();
+            $logUser->useragent = $request->server('HTTP_USER_AGENT');
+            $logUser->save();
+        }else{
+            LogUser::query()->where('ip', $request->ip())->orderBy('id', 'DESC')->first()
+                ->update(['updated_at' => $date]);
+        }
         $cates = Categories::query()->select('name', 'id')
             ->get();
         $products = Products::query()
@@ -128,10 +418,17 @@ class BanXiGaController extends Controller
             ->where('id', $id)
             ->first();
 //       dd($products);
-
+        $topProducts[]= Products::query()
+            ->where('amont','>',0)
+            ->with('images')
+            ->orderBy('selled', 'DESC')
+            ->limit(4)
+            ->get();
         return view('/banxiga/productDetail', [
-            'cates' => $cates,
-            'products' => $products,
+            'webJoin' => $webJoin,
+            'topProducts'   => $topProducts,
+            'cates'         => $cates,
+            'products'      => $products,
         ]);
     }
 
@@ -208,20 +505,12 @@ class BanXiGaController extends Controller
 //        }
 //    }
 
-    public function SendOrder()
+    public function Order()
     {
-        if (\Session::has("Cart") != null) {
-            if (\Session::get('Cart')->totalQuanty > 0) {
-                return view('/banxiga/send_order');
-            } else {
-                return redirect('/home');
-            }
-        } else {
-            return redirect('/home');
-        }
+        return view('/banxiga/send_order');
     }
 
-    public function CheckOut(BanxigaCreateRequest $request)
+    public function SendOrder(BanxigaCreateRequest $request)
     {
         $mycart = \Session::get('Cart');
         $name = $request->get('name');
@@ -240,20 +529,11 @@ class BanXiGaController extends Controller
         $order->save();
         $order_id = $order->id;
 
-        $đata = array();
+        $data = array();
         $values = [];
         foreach ($mycart->products as $item) {
-//            $ctdh = new OrderListProduct();
-//            $ctdh->order_id = $order_id;
-//            $ctdh->qty = $item['quanty'];
-//            $ctdh->product_id = $item['productInfo']->id;
             $values[$item['productInfo']->id] = $item['quanty'];
-//            array_push($ids, $item['productInfo']->id);
-//            array_push($quantys, $item['quanty']);
-//            $ctdh->product_name = $item['productInfo']->name;
-//            $ctdh->money = $item['price'];
-//            $ctdh->save();
-            $đata[] = [
+            $data[] = [
                 'order_id' => $order_id,
                 'qty' => $item['quanty'],
                 'product_id' => $item['productInfo']->id,
@@ -261,30 +541,16 @@ class BanXiGaController extends Controller
                 'money' => $item['price']
             ];
         };
-        OrderListProduct::query()->insert($đata);
-//        $products = Products::query()
-//            ->select('id','selled')
-//            ->wherein('id',$ids)
-//            ->get();
+        OrderListProduct::query()->insert($data);
 
-//        foreach ($products as $item){
-//            $item->selled
-//        }
-        $result = self::updateValues($values);
-//        dd($result,$values);
-//        foreach ($products as $product) {
-//            foreach ($mycart->products as $item) {
-//                if ($item['productInfo']->id == $product->id) {
-//                    $product->selled = $product->selled + $item['quanty'];
-//                    $product->update(['selled' => $product['selled']]);
-//                }
-//            }
-//        }
+        $result = self::updateValuesSelled($values);
+        $result = self::updateValuesAmont($values);
+
         $request->Session()->forget('Cart');
         return response()->json(['message'=>'success']);
     }
 
-    public static function updateValues(array $values)
+    public static function updateValuesSelled(array $values)
     {
         $table = Products::getModel()->getTable();
         $cases = [];
@@ -302,6 +568,23 @@ class BanXiGaController extends Controller
         return \DB::update("UPDATE `{$table}` SET `selled` = `selled` + CASE `id` {$cases} END, `updated_at` = ? WHERE `id` in ({$ids})", $params);
     }
 
+    public static function updateValuesAmont(array $values)
+    {
+        $table = Products::getModel()->getTable();
+        $cases = [];
+        $ids = [];
+        $params = [];
+        foreach ($values as $id => $value) {
+            $id = (int) $id;
+            $cases[] = "WHEN {$id} then ?";
+            $params[] = $value;
+            $ids[] = $id;
+        }
+        $ids = implode(',', $ids);
+        $cases = implode(' ', $cases);
+        $params[] = Carbon::now();
+        return \DB::update("UPDATE `{$table}` SET `amont` = `amont` - CASE `id` {$cases} END, `updated_at` = ? WHERE `id` in ({$ids})", $params);
+    }
 }
 
 

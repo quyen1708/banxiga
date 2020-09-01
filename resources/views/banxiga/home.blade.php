@@ -22,7 +22,7 @@
                                 <h4 class="card-title">{{ $ele->name }}</h4>
                                 <p class="card-text">{{ number_format($ele->price) }}đ</p>
                                 <div style="position: absolute; bottom: 20px">
-                                    <a onclick="handleCLickAddCart({{$ele->id}})" href="/Send-Order" class="btn btn-primary">
+                                    <a onclick="handleCLickBuyNow({{$ele->id}})" href="javascript:" class="btn btn-primary">
                                         <span>Mua ngay</span>
                                     </a>
                                     <a type="button" onclick="handleCLickAddCart({{$ele->id}})" href="javascript:" class="btn btn-outline-info ml-3"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>

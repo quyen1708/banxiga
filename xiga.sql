@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th8 28, 2020 lúc 10:04 AM
--- Phiên bản máy phục vụ: 10.3.23-MariaDB-1:10.3.23+maria~bionic
--- Phiên bản PHP: 7.4.8
+-- Thời gian đã tạo: Th9 01, 2020 lúc 01:13 AM
+-- Phiên bản máy phục vụ: 10.3.22-MariaDB-1ubuntu1
+-- Phiên bản PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -67,6 +67,32 @@ INSERT INTO `categories` (`id`, `name`, `status`, `display_order`, `created_at`,
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `log_users`
+--
+
+CREATE TABLE `log_users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `ip` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `useragent` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connected` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `log_users`
+--
+
+INSERT INTO `log_users` (`id`, `ip`, `useragent`, `connected`, `created_at`, `updated_at`) VALUES
+(184, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36', 0, '2020-08-31 10:04:30', '2020-08-31 10:24:47'),
+(185, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36', 0, '2020-08-31 10:23:58', '2020-08-31 10:32:32'),
+(186, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36', 0, '2020-08-31 10:41:10', '2020-08-31 10:55:05'),
+(187, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36', 0, '2020-08-31 10:56:53', '2020-08-31 11:11:53'),
+(188, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36', 0, '2020-08-31 11:11:54', '2020-08-31 11:13:14');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `migrations`
 --
 
@@ -98,7 +124,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (18, '2020_08_11_041830_create_ban_xi_gas_table', 13),
 (19, '2020_08_13_052055_add_selled_to_product', 13),
 (20, '2020_08_25_043047_order_list', 14),
-(21, '2020_08_25_043048_order_list', 15);
+(21, '2020_08_25_043048_order_list', 15),
+(22, '2020_08_28_114943_create_log_users_table', 16);
 
 -- --------------------------------------------------------
 
@@ -164,7 +191,32 @@ INSERT INTO `order_list` (`id`, `cus_name`, `cus_phone`, `cus_email`, `cus_addre
 (56, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '765000', 1, '2020-08-27 00:46:17', '2020-08-27 00:54:05'),
 (57, 'sadas', '2131423', 'sadasd@2qwe', '123 ewqwe 23 qweqw 2133qwe', '780000', 0, '2020-08-27 00:56:16', '2020-08-27 00:56:16'),
 (58, 'Cheri T Ponce', '8066803251', 'vhkb1708@gmail.com', '1201  Hilltop\nDrive', '34245000', 0, '2020-08-27 04:39:29', '2020-08-27 04:39:29'),
-(59, 'Cheri T Ponce', '8066803251', 'vhkb1708@gmail.com', '1201  Hilltop\nDrive', '1350000', 0, '2020-08-27 04:39:51', '2020-08-27 04:39:51');
+(59, 'Cheri T Ponce', '8066803251', 'vhkb1708@gmail.com', '1201  Hilltop\nDrive', '1350000', 0, '2020-08-27 04:39:51', '2020-08-27 04:39:51'),
+(60, 'Cheri T Ponce', '8066803251', 'nguoitot231@gmail.com', '1201  Hilltop\nDrive', '50940000', 0, '2020-08-28 04:47:26', '2020-08-28 04:47:26'),
+(61, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '230000', 0, '2020-08-31 07:39:58', '2020-08-31 07:39:58'),
+(62, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '230000', 0, '2020-08-31 07:40:00', '2020-08-31 07:40:00'),
+(63, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '230000', 0, '2020-08-31 07:40:01', '2020-08-31 07:40:01'),
+(64, 'Cheri T Ponce', '8066803251', 'nguoitot231@gmail.com', '1201  Hilltop\nDrive', '230000', 0, '2020-08-31 07:40:11', '2020-08-31 07:40:11'),
+(65, 'Cheri T Ponce', '8066803251', 'nguoitot231@gmail.com', '1201  Hilltop\nDrive', '230000', 0, '2020-08-31 07:40:14', '2020-08-31 07:40:14'),
+(66, 'Cheri T Ponce', '8066803251', 'nguoitot231@gmail.com', '1201  Hilltop\nDrive', '230000', 0, '2020-08-31 07:40:24', '2020-08-31 07:40:24'),
+(67, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '230000', 0, '2020-08-31 07:41:13', '2020-08-31 07:41:13'),
+(68, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '80000', 0, '2020-08-31 07:56:24', '2020-08-31 07:56:24'),
+(69, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '550000', 0, '2020-08-31 08:09:26', '2020-08-31 08:09:26'),
+(70, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '120000', 0, '2020-08-31 08:12:27', '2020-08-31 08:12:27'),
+(71, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '900000', 0, '2020-08-31 08:55:40', '2020-08-31 08:55:40'),
+(72, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '900000', 0, '2020-08-31 08:55:41', '2020-08-31 08:55:41'),
+(73, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '900000', 0, '2020-08-31 08:55:41', '2020-08-31 08:55:41'),
+(74, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '900000', 0, '2020-08-31 08:55:41', '2020-08-31 08:55:41'),
+(75, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '900000', 0, '2020-08-31 08:55:47', '2020-08-31 08:55:47'),
+(76, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '900000', 0, '2020-08-31 08:55:47', '2020-08-31 08:55:47'),
+(77, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '900000', 0, '2020-08-31 08:57:27', '2020-08-31 08:57:27'),
+(78, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '900000', 0, '2020-08-31 08:57:29', '2020-08-31 08:57:29'),
+(79, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '900000', 0, '2020-08-31 09:00:51', '2020-08-31 09:00:51'),
+(80, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '900000', 0, '2020-08-31 09:02:34', '2020-08-31 09:02:34'),
+(81, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '22500000', 0, '2020-08-31 09:08:02', '2020-08-31 09:08:02'),
+(82, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '750000', 0, '2020-08-31 09:09:37', '2020-08-31 09:09:37'),
+(83, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '2699988', 0, '2020-08-31 09:17:03', '2020-08-31 09:17:03'),
+(84, 'Cheri T Ponce', '8066803251', 'vhkb1234@gmail.com', '1201  Hilltop\nDrive', '2390000', 0, '2020-08-31 10:41:38', '2020-08-31 10:41:38');
 
 -- --------------------------------------------------------
 
@@ -232,7 +284,30 @@ INSERT INTO `order_list_product` (`id`, `order_id`, `product_id`, `product_name`
 (121, 58, '42', 'Xì gà Villiger Mini sumatra classic', 1, 100000, NULL, NULL),
 (122, 58, '29', 'bật lửa clipper hàng chính hãng', 3, 345000, NULL, NULL),
 (123, 59, '48', 'Thuốc lá Marula Z Bấm', 3, 870000, NULL, NULL),
-(124, 59, '50', 'Thuốc lá cuốn tay Drum Bright Blue', 4, 480000, NULL, NULL);
+(124, 59, '50', 'Thuốc lá cuốn tay Drum Bright Blue', 4, 480000, NULL, NULL),
+(125, 60, '37', 'Xì Gà Leaf by Oscar No1 Limited 2018 Hộp xứ Đỏ', 1, 18500000, NULL, NULL),
+(126, 60, '39', 'Xì gà J.Corte\'s Corona tubos', 1, 440000, NULL, NULL),
+(127, 60, '36', 'Xì Gà Leaf by Oscar Hộp Gỗ Sample 20\'s ring 60', 2, 32000000, NULL, NULL),
+(128, 67, '16', 'Bộ thuốc lá cuốn tay Lookout 3', 1, 230000, NULL, NULL),
+(129, 68, '43', 'Xì gà Café Crème Blue Hộp Giấy', 1, 80000, NULL, NULL),
+(130, 69, '49', 'DUNHILL ĐỎ DÀI', 1, 550000, NULL, NULL),
+(131, 70, '13', 'Thuốc lá cuốn tay Golden Virginia Bright Yellow', 1, 120000, NULL, NULL),
+(132, 71, '12', 'Thuốc lá cuộn tay Amber Leaf', 6, 900000, NULL, NULL),
+(133, 72, '12', 'Thuốc lá cuộn tay Amber Leaf', 6, 900000, NULL, NULL),
+(134, 73, '12', 'Thuốc lá cuộn tay Amber Leaf', 6, 900000, NULL, NULL),
+(135, 74, '12', 'Thuốc lá cuộn tay Amber Leaf', 6, 900000, NULL, NULL),
+(136, 75, '12', 'Thuốc lá cuộn tay Amber Leaf', 6, 900000, NULL, NULL),
+(137, 76, '12', 'Thuốc lá cuộn tay Amber Leaf', 6, 900000, NULL, NULL),
+(138, 77, '12', 'Thuốc lá cuộn tay Amber Leaf', 6, 900000, NULL, NULL),
+(139, 78, '12', 'Thuốc lá cuộn tay Amber Leaf', 6, 900000, NULL, NULL),
+(140, 79, '12', 'Thuốc lá cuộn tay Amber Leaf', 6, 900000, NULL, NULL),
+(141, 80, '12', 'Thuốc lá cuộn tay Amber Leaf', 6, 900000, NULL, NULL),
+(142, 81, '40', 'Cohiba short limited edition 2018', 3, 22500000, NULL, NULL),
+(143, 82, '12', 'Thuốc lá cuộn tay Amber Leaf', 5, 750000, NULL, NULL),
+(144, 83, '44', 'Bật lửa xì gà Cohiba', 6, 2699988, NULL, NULL),
+(145, 84, '46', 'Gạt tàn thuốc xì gà cohiba N001', 1, 500000, NULL, NULL),
+(146, 84, '45', 'Dao cắt xì gà Lubinski N003', 1, 40000, NULL, NULL),
+(147, 84, '47', 'Tẩu hút xì gà Thạch Nam N006', 1, 1850000, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -259,11 +334,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `price`, `amont`, `status`, `display_order`, `created_at`, `updated_at`, `selled`) VALUES
-(12, 6, 'Thuốc lá cuộn tay Amber Leaf', '<p>- Th&ocirc;ng tin sản phẩm:&nbsp;<strong>Thuốc l&aacute; cuốn tay&nbsp;Amber Leaf.</strong></p>\r\n\r\n<p>- M&atilde; sản phẩm: ST-001.</p>\r\n\r\n<p>- Trọng lượng: 50gram.</p>\r\n\r\n<p>- Độ nặng: 3.5/5(cuốn được 100 điếu)</p>\r\n\r\n<p>- Đ&oacute;ng g&oacute;i: k&iacute;n nhiệt.</p>\r\n\r\n<p>- Sản xuất: Nhật bản.</p>\r\n\r\n<p>- Thuốc l&aacute; cuốn tay l&agrave; một sản phẩm nguy&ecirc;n chất&nbsp;với hương vị thơm ngọt nhẹ v&agrave; mang lại một cảm gi&aacute;c cho bạn n&acirc;ng n&acirc;ng say nhẹ.</p>\r\n\r\n<p>- L&agrave;&nbsp;một loại thuốc l&aacute; cao cấp&nbsp;được sản xuất từ nh&oacute;m&nbsp;Gallaher Group vương quốc Anh trước khi được Nhật bản tobaco mua lại v&agrave;o năm 2007. Sẽ l&agrave; một điều th&uacute; vị nếu tự tay ch&uacute;ng ta cuộn v&agrave; thưởng thức những l&aacute; thuốc<strong>&nbsp;AMBER LEAF&nbsp;</strong>thật thơm ngon phải kh&ocirc;ng bạn. N&agrave;o h&atilde;y c&ugrave;ng thưởng thức Thuốc l&aacute; cuốn tay Amber leaf nghe bạn.</p>', 150000, 100, 1, 0, '2020-08-10 23:38:37', '2020-08-27 00:56:16', 6),
-(13, 6, 'Thuốc lá cuốn tay Golden Virginia Bright Yellow', '<p>Th&ocirc;ng tin sản phẩm:<br />\r\nKhối lượng g&oacute;i: 50g ( cuốn được tầm 80 - 100 điếu ) thuốc l&aacute; cuốn tay Golden Virginia Bright Yellow<br />\r\nThương hiệu: Golden Virginia</p>', 120000, 100, 1, 0, '2020-08-10 23:39:23', '2020-08-27 00:56:16', 3),
+(12, 6, 'Thuốc lá cuộn tay Amber Leaf', '<p>- Th&ocirc;ng tin sản phẩm:&nbsp;<strong>Thuốc l&aacute; cuốn tay&nbsp;Amber Leaf.</strong></p>\r\n\r\n<p>- M&atilde; sản phẩm: ST-001.</p>\r\n\r\n<p>- Trọng lượng: 50gram.</p>\r\n\r\n<p>- Độ nặng: 3.5/5(cuốn được 100 điếu)</p>\r\n\r\n<p>- Đ&oacute;ng g&oacute;i: k&iacute;n nhiệt.</p>\r\n\r\n<p>- Sản xuất: Nhật bản.</p>\r\n\r\n<p>- Thuốc l&aacute; cuốn tay l&agrave; một sản phẩm nguy&ecirc;n chất&nbsp;với hương vị thơm ngọt nhẹ v&agrave; mang lại một cảm gi&aacute;c cho bạn n&acirc;ng n&acirc;ng say nhẹ.</p>\r\n\r\n<p>- L&agrave;&nbsp;một loại thuốc l&aacute; cao cấp&nbsp;được sản xuất từ nh&oacute;m&nbsp;Gallaher Group vương quốc Anh trước khi được Nhật bản tobaco mua lại v&agrave;o năm 2007. Sẽ l&agrave; một điều th&uacute; vị nếu tự tay ch&uacute;ng ta cuộn v&agrave; thưởng thức những l&aacute; thuốc<strong>&nbsp;AMBER LEAF&nbsp;</strong>thật thơm ngon phải kh&ocirc;ng bạn. N&agrave;o h&atilde;y c&ugrave;ng thưởng thức Thuốc l&aacute; cuốn tay Amber leaf nghe bạn.</p>', 150000, 0, 1, 0, '2020-08-10 23:38:37', '2020-08-31 09:14:51', 17),
+(13, 6, 'Thuốc lá cuốn tay Golden Virginia Bright Yellow', '<p>Th&ocirc;ng tin sản phẩm:<br />\r\nKhối lượng g&oacute;i: 50g ( cuốn được tầm 80 - 100 điếu ) thuốc l&aacute; cuốn tay Golden Virginia Bright Yellow<br />\r\nThương hiệu: Golden Virginia</p>', 120000, 100, 1, 0, '2020-08-10 23:39:23', '2020-08-31 08:12:27', 4),
 (14, 6, 'Thuốc lá cuốn tay Golden Virginia Original', '<h1>Th&ocirc;ng tin sản phẩm:<br />\r\n- T&ecirc;n sản phẩm: Golden Virginia Original<br />\r\n- Khối lượng g&oacute;i: 50g ( cuốn được khoảng 80 - 100 điếu )<br />\r\n- Thương hiệu: Golden Virginia<br />\r\n- Thuốc l&aacute; cuốn tay Golden Virginia Original&nbsp;hương vị thuốc l&aacute; gốc cho cảm gi&aacute;c l&acirc;ng l&acirc;ng v&agrave; say thật sự ngon đến từng hơi thuốc. Thơm ngon tựa d&ograve;ng Golden virginia classic chắc chắn sẽ mang đến cho qu&yacute; vị s&agrave;nh thuốc cuốn một sự trải nghiệm v&agrave; h&agrave;i l&ograve;ng bởi sự thơm ngon của n&oacute;.</h1>', 120000, 100, 1, 0, '2020-08-10 23:40:20', '2020-08-27 00:56:16', 3),
 (15, 6, 'Thuốc lá cuốn tay Drum Bright Blue', '<p>Th&ocirc;ng tin sản phẩm:<br />\r\n- T&ecirc;n SP: Drum Bright Blue<br />\r\n- M&atilde; SP: SP-005<br />\r\n- Trọng lượng: 50g ( cuốn được tầm 80 - 100 điếu )<br />\r\n- Hương vị: Sợi nguy&ecirc;n chất&nbsp;<br />\r\n- Thương hi&ecirc;̣u: Drum<br />\r\n- Sản xuất: H&agrave; Lan<br />\r\n- Thuốc l&aacute; cuốn tay Drum Bright Blue một hương vị thỏa m&atilde;n đến từ một sự kết hợp độc đ&aacute;o của thuốc l&aacute; chất lượng: Bright virginia, burley vị hấp dẫn v&agrave; đậm kentucky</p>', 120000, 100, 1, 0, '2020-08-10 23:40:54', '2020-08-10 23:40:54', 0),
-(16, 7, 'Bộ thuốc lá cuốn tay Lookout 3', '<p>Th&ocirc;ng tin bộ sản phẩm:<br />\r\n- T&ecirc;n bộ SP: Bộ thuốc l&aacute; cuốn tay Lookout<br />\r\n- Số lượng bộ gồm:<br />\r\n. Một g&oacute;i thuốc Lookout&nbsp;( 50g )<br />\r\n. Một hộp cuốn thuốc l&aacute; tự động Rolling strong machine ( m&aacute;y rất tốt)<br />\r\n. Một bịch đầu lọc OCB ( 120 đầu lọc )&nbsp;hoặc một g&oacute;i lọc slim long 120, hoặc một g&oacute;i lọc 168<br />\r\n. 2 tệp giấy OCB ( 1 tệp/50 tờ giấy )</p>', 230000, 100, 1, 0, '2020-08-10 23:42:19', '2020-08-27 00:33:18', 1),
+(16, 7, 'Bộ thuốc lá cuốn tay Lookout 3', '<p>Th&ocirc;ng tin bộ sản phẩm:<br />\r\n- T&ecirc;n bộ SP: Bộ thuốc l&aacute; cuốn tay Lookout<br />\r\n- Số lượng bộ gồm:<br />\r\n. Một g&oacute;i thuốc Lookout&nbsp;( 50g )<br />\r\n. Một hộp cuốn thuốc l&aacute; tự động Rolling strong machine ( m&aacute;y rất tốt)<br />\r\n. Một bịch đầu lọc OCB ( 120 đầu lọc )&nbsp;hoặc một g&oacute;i lọc slim long 120, hoặc một g&oacute;i lọc 168<br />\r\n. 2 tệp giấy OCB ( 1 tệp/50 tờ giấy )</p>', 230000, 100, 1, 0, '2020-08-10 23:42:19', '2020-08-31 07:41:13', 2),
 (17, 7, 'Bộ thuốc lá cuốn tay Mac Baren Cafe #09 Choice 6', '<p>Th&ocirc;ng tin sản phẩm:<br />\r\n- T&ecirc;n SP: Bộ thuốc l&aacute; cuốn tay Mac Baren Cafe #09&nbsp;Choice 1<br />\r\n- Số lượng bộ gồm:<br />\r\n. Một g&oacute;i thuốc Mac Baren Cafe #09 Choice ( 40g )<br />\r\n. Một hộp cuốn thuốc l&aacute; tự động Mascotte<br />\r\n. Một bịch đầu lọc Party 168&nbsp;( 160 đầu lọc )&nbsp;hoặc một g&oacute;i lọc Party 252( 252 đầu lọc) hoặc một g&oacute;i lọc ocb/econo- 120 lọc<br />\r\n. 2 tệp giấy Gizeh&nbsp;( 1 tệp/50 tờ giấy )</p>\r\n\r\n<p>Lưu &yacute;: Qu&yacute; kh&aacute;ch h&agrave;ng&nbsp;c&oacute; thể chọn loại thuốc Mac Baren kh&aacute;c để gh&eacute;p v&agrave;o bộ n&agrave;y m&agrave; gi&aacute; kh&ocirc;ng đổi.</p>', 240000, 100, 1, 0, '2020-08-10 23:42:58', '2020-08-27 00:33:18', 1),
 (18, 7, 'Bộ thuốc lá cuốn tay Original Drum 2', '<p>Th&ocirc;ng tin bộ sản phẩm:<br />\r\n- T&ecirc;n bộ SP: Bộ thuốc l&aacute; cuốn tay Drum Original 2<br />\r\n- Số lượng bộ gồm:<br />\r\n. Một g&oacute;i thuốc Drum Original ( 50g )<br />\r\n. Một hộp cuốn thuốc l&aacute; tự động Mascotte<br />\r\n. Một bịch đầu lọc OCB ( 120 đầu lọc )&nbsp;hoặc một g&oacute;i lọc slim long 120<br />\r\n. Một&nbsp;tệp giấy OCB Premium ( 1 tệp/50 tờ giấy )</p>', 250000, 100, 1, 0, '2020-08-10 23:43:31', '2020-08-27 00:45:50', 2),
 (19, 7, 'Bộ thuốc lá cuốn tay Amber Leaf 3', '<p>Th&ocirc;ng tin bộ sản phẩm:<br />\r\n- T&ecirc;n b&ocirc; sản phẩm: Bộ thuốc l&aacute; cuốn tay Amber Leaf 3<br />\r\n- Số lượng bộ gồm:<br />\r\n. Một g&oacute;i thuốc Amber Leaf ( 50g )<br />\r\n. Một hộp cuốn thuốc l&aacute; tự động<br />\r\n. Một bịch đầu lọc slim 168 hoặc 252&nbsp;( 150 đầu lọc d&agrave;i&nbsp;hoặc 252 đầu lọc ngắn)<br />\r\n. Một&nbsp;tệp giấy Gizeh Original&nbsp;( 1 tệp/50 tờ giấy )<br />\r\n- Bộ thuốc l&aacute; cuốn tay Amber Leaf 3&nbsp;l&agrave; sản phẩm độc đ&aacute;o d&agrave;nh cho những ai h&uacute;t thuốc l&aacute;, muốn tạo cho m&igrave;nh một phong c&aacute;ch h&uacute;t thuốc mới. Sợi thuốc l&aacute; Amber Leaf l&agrave; sợi thuốc nguy&ecirc;n chất được nhập từ nước ngo&agrave;i về đem lại cảm gi&aacute;c mới v&agrave; hương thơm đặc trưng cho những ai thưởng thứ</p>', 280000, 100, 1, 0, '2020-08-10 23:44:03', '2020-08-10 23:44:03', 0),
@@ -283,20 +358,20 @@ INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `price`, `am
 (33, 11, 'Cohiba Siglo VI Hộp 10 điếu', '<p><strong>Th&ocirc;ng tin sản phẩm</strong></p>\r\n\r\n<p><strong>T&ecirc;n th&ocirc;ng dụng:</strong>&nbsp;Siglo VI<br />\r\n<strong>T&ecirc;n gốc:</strong>&nbsp;Ca&ntilde;onazo<br />\r\n<strong>Quy c&aacute;ch hộp:</strong>&nbsp;Hộp 10 điếu chứa trong hộp gỗ<br />\r\n<strong>Đường k&iacute;nh:</strong>&nbsp;52 ~ 2.06cm / 0.8 inches<br />\r\n<strong>Độ d&agrave;i:</strong>&nbsp;15.00 cm / 5.9 inches<br />\r\n<strong>Vị:</strong>&nbsp;Gỗ<br />\r\n<strong>Độ nặng:</strong>&nbsp;Trung b&igrave;nh<br />\r\n<strong>H&igrave;nh dạng:</strong>&nbsp;Robusto</p>', 11000000, 100, 1, 0, '2020-08-10 23:53:27', '2020-08-27 04:39:29', 4),
 (34, 11, 'Xì gà Cohiba Black Pequenos hộp đen 6 điếu (Cohiba hộp 6 điếu)', '<p>Cohiba black pequenos<br />\r\nHộp sắt : 6 điếu<br />\r\nK&iacute;ch thước : 9.5cm ring 38<br />\r\nX&igrave; G&agrave; Cohiba Pequenos được quấn tay bởi những người thợ h&agrave;ng đầu tại Cộng H&ograve;a Dominican v&igrave; vậy cấu tr&uacute;c của điếu rất xuất sắc với mầu n&acirc;u tự nhi&ecirc;n của l&aacute; thuốc. Bạn c&oacute; thể quan s&aacute;t thấy sự xuất sắc trong cấu tr&uacute;c điếu x&igrave; g&agrave; qua t&agrave;n thuốc k&eacute;o d&agrave;i sau mỗi hơi<br />\r\nVới hương vị nhẹ nh&agrave;ng của cf expresso , gỗ v&agrave; một ch&uacute;t socola<br />\r\nGi&aacute; : /hộp thiếc 6 điếu</p>', 750000, 100, 1, 0, '2020-08-10 23:53:59', '2020-08-10 23:53:59', 0),
 (35, 11, 'Xì gà Cohiba Pequenos hộp 6 điếu (Cohiba hộp 6 điếu)', '<p>Cohiba pequenos<br />\r\nHộp sắt : 6 điếu<br />\r\nK&iacute;ch thước : 9.5cm ring 38<br />\r\nX&igrave; G&agrave; Cohiba Pequenos được quấn tay bởi những người thợ h&agrave;ng đầu tại Cộng H&ograve;a Dominican v&igrave; vậy cấu tr&uacute;c của điếu rất xuất sắc với mầu n&acirc;u tự nhi&ecirc;n của l&aacute; thuốc. Bạn c&oacute; thể quan s&aacute;t thấy sự xuất sắc trong cấu tr&uacute;c điếu x&igrave; g&agrave; qua t&agrave;n thuốc k&eacute;o d&agrave;i sau mỗi hơi<br />\r\nVới hương vị nhẹ nh&agrave;ng của cf expresso , gỗ v&agrave; một ch&uacute;t socola<br />\r\nGi&aacute; : /hộp thiếc 6 điếu</p>', 750000, 100, 1, 0, '2020-08-10 23:54:33', '2020-08-10 23:54:33', 0),
-(36, 12, 'Xì Gà Leaf by Oscar Hộp Gỗ Sample 20\'s ring 60', '<ul>\r\n	<li>\r\n	<p>NH&Atilde;N HIỆU:&nbsp;Leaf by Oscar</p>\r\n	</li>\r\n	<li>\r\n	<p>Kiểu D&aacute;ng:&nbsp;4 loại</p>\r\n	</li>\r\n	<li>\r\n	<p>Th&acirc;n Cigar:&nbsp;Tr&ograve;n</p>\r\n	</li>\r\n	<li>\r\n	<p>CHIỀU D&Agrave;I X&Igrave; G&Agrave;:&nbsp;6 &quot;</p>\r\n	</li>\r\n	<li>\r\n	<p>NGUỒN GỐC:&nbsp;Honduras</p>\r\n	</li>\r\n	<li>\r\n	<p>ĐO V&Ograve;NG X&Igrave; G&Agrave;: 60</p>\r\n	</li>\r\n	<li>\r\n	<p>SỨC MẠNH: mang đặc trưng ri&ecirc;ng của 4 loại.</p>\r\n	</li>\r\n	<li>\r\n	<p>M&Agrave;U VỎ BỌC:&nbsp;Natural</p>\r\n	</li>\r\n	<li>\r\n	<p>BAO B&Igrave; ĐƠN: Kh&ocirc;ng</p>\r\n	</li>\r\n	<li>\r\n	<p>LOẠI C&Aacute;N:&nbsp;L&agrave;m Bằng Tay</p>\r\n	</li>\r\n	<li>\r\n	<p>NH&Agrave; SẢN XUẤT X&Igrave; G&Agrave;:&nbsp;Oscar Valladares</p>\r\n	</li>\r\n	<li>\r\n	<p>CIGAR WRAPPER:&nbsp;Nicaraguan Maduro</p>\r\n	</li>\r\n	<li>\r\n	<p>CIGAR BINDER:&nbsp;Honduras</p>\r\n	</li>\r\n	<li>\r\n	<p>CIGAR FILLER:&nbsp;Honduras</p>\r\n	</li>\r\n</ul>', 16000000, 100, 1, 0, '2020-08-10 23:55:12', '2020-08-10 23:55:12', 0),
-(37, 12, 'Xì Gà Leaf by Oscar No1 Limited 2018 Hộp xứ Đỏ', '<ul>\r\n	<li>\r\n	<p>NH&Atilde;N HIỆU:&nbsp;Leaf by Oscar</p>\r\n	</li>\r\n	<li>\r\n	<p>Kiểu D&aacute;ng:&nbsp;4 loại</p>\r\n	</li>\r\n	<li>\r\n	<p>Th&acirc;n Cigar:&nbsp;Tr&ograve;n</p>\r\n	</li>\r\n	<li>\r\n	<p>CHIỀU D&Agrave;I X&Igrave; G&Agrave;:&nbsp;6 &quot;</p>\r\n	</li>\r\n	<li>\r\n	<p>NGUỒN GỐC:&nbsp;Honduras</p>\r\n	</li>\r\n	<li>\r\n	<p>ĐO V&Ograve;NG X&Igrave; G&Agrave;: 60</p>\r\n	</li>\r\n	<li>\r\n	<p>SỨC MẠNH: mang đặc trưng ri&ecirc;ng của 4 loại.</p>\r\n	</li>\r\n	<li>\r\n	<p>M&Agrave;U VỎ BỌC:&nbsp;Natural</p>\r\n	</li>\r\n	<li>\r\n	<p>BAO B&Igrave; ĐƠN: Kh&ocirc;ng</p>\r\n	</li>\r\n	<li>\r\n	<p>LOẠI C&Aacute;N:&nbsp;L&agrave;m Bằng Tay</p>\r\n	</li>\r\n	<li>\r\n	<p>NH&Agrave; SẢN XUẤT X&Igrave; G&Agrave;:&nbsp;Oscar Valladares</p>\r\n	</li>\r\n	<li>\r\n	<p>CIGAR WRAPPER:&nbsp;Nicaraguan Maduro</p>\r\n	</li>\r\n	<li>\r\n	<p>CIGAR BINDER:&nbsp;Honduras</p>\r\n	</li>\r\n	<li>\r\n	<p>CIGAR FILLER:&nbsp;Honduras</p>\r\n	</li>\r\n</ul>', 18500000, 100, 1, 0, '2020-08-10 23:55:48', '2020-08-10 23:55:48', 0),
+(36, 12, 'Xì Gà Leaf by Oscar Hộp Gỗ Sample 20\'s ring 60', '<ul>\r\n	<li>\r\n	<p>NH&Atilde;N HIỆU:&nbsp;Leaf by Oscar</p>\r\n	</li>\r\n	<li>\r\n	<p>Kiểu D&aacute;ng:&nbsp;4 loại</p>\r\n	</li>\r\n	<li>\r\n	<p>Th&acirc;n Cigar:&nbsp;Tr&ograve;n</p>\r\n	</li>\r\n	<li>\r\n	<p>CHIỀU D&Agrave;I X&Igrave; G&Agrave;:&nbsp;6 &quot;</p>\r\n	</li>\r\n	<li>\r\n	<p>NGUỒN GỐC:&nbsp;Honduras</p>\r\n	</li>\r\n	<li>\r\n	<p>ĐO V&Ograve;NG X&Igrave; G&Agrave;: 60</p>\r\n	</li>\r\n	<li>\r\n	<p>SỨC MẠNH: mang đặc trưng ri&ecirc;ng của 4 loại.</p>\r\n	</li>\r\n	<li>\r\n	<p>M&Agrave;U VỎ BỌC:&nbsp;Natural</p>\r\n	</li>\r\n	<li>\r\n	<p>BAO B&Igrave; ĐƠN: Kh&ocirc;ng</p>\r\n	</li>\r\n	<li>\r\n	<p>LOẠI C&Aacute;N:&nbsp;L&agrave;m Bằng Tay</p>\r\n	</li>\r\n	<li>\r\n	<p>NH&Agrave; SẢN XUẤT X&Igrave; G&Agrave;:&nbsp;Oscar Valladares</p>\r\n	</li>\r\n	<li>\r\n	<p>CIGAR WRAPPER:&nbsp;Nicaraguan Maduro</p>\r\n	</li>\r\n	<li>\r\n	<p>CIGAR BINDER:&nbsp;Honduras</p>\r\n	</li>\r\n	<li>\r\n	<p>CIGAR FILLER:&nbsp;Honduras</p>\r\n	</li>\r\n</ul>', 16000000, 100, 1, 0, '2020-08-10 23:55:12', '2020-08-28 04:47:27', 2),
+(37, 12, 'Xì Gà Leaf by Oscar No1 Limited 2018 Hộp xứ Đỏ', '<ul>\r\n	<li>\r\n	<p>NH&Atilde;N HIỆU:&nbsp;Leaf by Oscar</p>\r\n	</li>\r\n	<li>\r\n	<p>Kiểu D&aacute;ng:&nbsp;4 loại</p>\r\n	</li>\r\n	<li>\r\n	<p>Th&acirc;n Cigar:&nbsp;Tr&ograve;n</p>\r\n	</li>\r\n	<li>\r\n	<p>CHIỀU D&Agrave;I X&Igrave; G&Agrave;:&nbsp;6 &quot;</p>\r\n	</li>\r\n	<li>\r\n	<p>NGUỒN GỐC:&nbsp;Honduras</p>\r\n	</li>\r\n	<li>\r\n	<p>ĐO V&Ograve;NG X&Igrave; G&Agrave;: 60</p>\r\n	</li>\r\n	<li>\r\n	<p>SỨC MẠNH: mang đặc trưng ri&ecirc;ng của 4 loại.</p>\r\n	</li>\r\n	<li>\r\n	<p>M&Agrave;U VỎ BỌC:&nbsp;Natural</p>\r\n	</li>\r\n	<li>\r\n	<p>BAO B&Igrave; ĐƠN: Kh&ocirc;ng</p>\r\n	</li>\r\n	<li>\r\n	<p>LOẠI C&Aacute;N:&nbsp;L&agrave;m Bằng Tay</p>\r\n	</li>\r\n	<li>\r\n	<p>NH&Agrave; SẢN XUẤT X&Igrave; G&Agrave;:&nbsp;Oscar Valladares</p>\r\n	</li>\r\n	<li>\r\n	<p>CIGAR WRAPPER:&nbsp;Nicaraguan Maduro</p>\r\n	</li>\r\n	<li>\r\n	<p>CIGAR BINDER:&nbsp;Honduras</p>\r\n	</li>\r\n	<li>\r\n	<p>CIGAR FILLER:&nbsp;Honduras</p>\r\n	</li>\r\n</ul>', 18500000, 100, 1, 0, '2020-08-10 23:55:48', '2020-08-28 04:47:27', 1),
 (38, 12, 'XÌ Gà Rocky Patel Tubo Sampler', '<p>Rocky Patel Tubo Sampler 2015 gồm c&oacute; những vị trong bộ 6 điếu như sau:​<br />\r\n1 x Rocky Patel Sun Grown Tubo (6.0&quot;x50)<br />\r\n1 x Rocky Patel Decade Tubo (6.5&rdquo; x 52)<br />\r\n1 x Rocky Patel Royale Tubo (6.0&rdquo; x 50)<br />\r\n1 x Rocky Patel 15th Anniversary Tubo &nbsp;&nbsp;&nbsp;<br />\r\n1 x Rocky Patel Vintage 1990 Tubo (6.0&rdquo; x 50)<br />\r\n1 x Rocky Patel Vintage Connecticut Tubo (6.0&rdquo; x 50)</p>\r\n\r\n<p>Xuất xứ: T&acirc;y Ban Nha. L&aacute; thuốc c&oacute; độ tuổi từ 5 đến 12 năm tuổi từ Nicaragua v&agrave; Dominican, thuốc được cuốn bằng tay.</p>', 2200000, 100, 1, 0, '2020-08-10 23:56:44', '2020-08-10 23:56:44', 0),
-(39, 12, 'Xì gà J.Corte\'s Corona tubos', '<p>Gi&aacute;: gi&aacute; tr&ecirc;n g&oacute;i 5&nbsp;điếu tubos</p>\r\n\r\n<p>Đ&oacute;ng g&oacute;i : Hộp 25&nbsp;điếu trong hộp giấy.</p>\r\n\r\n<p>Xuất xứ: Dominican</p>', 440000, 100, 1, 0, '2020-08-10 23:57:14', '2020-08-10 23:57:14', 0),
-(40, 13, 'Cohiba short limited edition 2018', '<ul>\r\n	<li><strong>RING GAUGE:</strong>&nbsp;27</li>\r\n	<li><strong>CIGAR LENGTH:</strong>&nbsp;82 mm&nbsp;</li>\r\n	<li>diameter: 10.6mm</li>\r\n	<li><strong>STRENGTH:</strong>&nbsp;strength</li>\r\n	<li><strong>VITOLA:</strong>&nbsp;Panetela</li>\r\n	<li>flavour: Natural</li>\r\n	<li>Xuất xứ: Đức</li>\r\n	<li>Đ&oacute;ng g&oacute;i: hộp Gỗ.</li>\r\n	<li>Quy c&aacute;ch: 50 điếu/hộp.</li>\r\n</ul>', 7500000, 100, 1, 0, '2020-08-10 23:57:54', '2020-08-10 23:57:54', 0),
+(39, 12, 'Xì gà J.Corte\'s Corona tubos', '<p>Gi&aacute;: gi&aacute; tr&ecirc;n g&oacute;i 5&nbsp;điếu tubos</p>\r\n\r\n<p>Đ&oacute;ng g&oacute;i : Hộp 25&nbsp;điếu trong hộp giấy.</p>\r\n\r\n<p>Xuất xứ: Dominican</p>', 440000, 100, 1, 0, '2020-08-10 23:57:14', '2020-08-28 04:47:27', 1),
+(40, 13, 'Cohiba short limited edition 2018', '<ul>\r\n	<li><strong>RING GAUGE:</strong>&nbsp;27</li>\r\n	<li><strong>CIGAR LENGTH:</strong>&nbsp;82 mm&nbsp;</li>\r\n	<li>diameter: 10.6mm</li>\r\n	<li><strong>STRENGTH:</strong>&nbsp;strength</li>\r\n	<li><strong>VITOLA:</strong>&nbsp;Panetela</li>\r\n	<li>flavour: Natural</li>\r\n	<li>Xuất xứ: Đức</li>\r\n	<li>Đ&oacute;ng g&oacute;i: hộp Gỗ.</li>\r\n	<li>Quy c&aacute;ch: 50 điếu/hộp.</li>\r\n</ul>', 7500000, 100, 1, 0, '2020-08-10 23:57:54', '2020-08-31 09:08:02', 3),
 (41, 13, 'Xì gà Agio tip Sweet- HỘP GIẤY 10 ĐIẾU', '<p>- Số lượng: 1 hộp/10&nbsp;điếu<br />\r\n- K&iacute;ch thước: d&agrave;i 100&nbsp;mm<br />\r\n- V&ograve;ng đo: 9,1 mm<br />\r\n- Thời gian h&uacute;t: 15&nbsp;ph&uacute;t<br />\r\n- Hương vị: Vani thơm<br />\r\n- Đ&oacute;ng g&oacute;i: hộp thiếc<br />\r\n- Sản xuất: H&agrave; Lan</p>', 140000, 100, 1, 0, '2020-08-10 23:58:22', '2020-08-10 23:58:22', 0),
 (42, 13, 'Xì gà Villiger Mini sumatra classic', '<ul>\r\n	<li><strong>T&ecirc;n th&ocirc;ng dụng:&nbsp;</strong><strong>Villiger Mini Sumatra Classic</strong></li>\r\n	<li><strong>Quy c&aacute;ch hộp:&nbsp;</strong>Bao sắt 10 điếu</li>\r\n	<li><strong>Đường k&iacute;nh:&nbsp;</strong>Ring 20</li>\r\n	<li><strong>Độ d&agrave;i:&nbsp;</strong>80 mm</li>\r\n	<li><strong>Vị:&nbsp;</strong>Gỗ, đất, cỏ kh&ocirc;</li>\r\n	<li><strong>Độ nặng:&nbsp;</strong>Nhẹ</li>\r\n	<li><strong>H&igrave;nh dạng:&nbsp;</strong>Cigarillos</li>\r\n	<li><strong>Xuất xứ:&nbsp;</strong>Đức</li>\r\n</ul>\r\n\r\n<p><strong>Villiger Mini Sumatra Classic</strong>&nbsp;&ndash; l&agrave; lọai cigar nhỏ thanh lịch với l&aacute; quấn ng&ograve;ai tự nhi&ecirc;n. Được tạo th&agrave;nh bởi sự pha trộn hương vị của Virginia, Burley v&agrave; Black Cavendish cho ra đời lọai hương vị Gỗ, đất, cỏ kh&ocirc; dễ chịu v&agrave; tuyệt hảo. Hy vọng một sản phẩm song song với d&ograve;ng villiger vanilla v&agrave; espresso&nbsp;sẽ mang lại sự thưởng thức th&uacute; vị.</p>', 100000, 100, 1, 0, '2020-08-10 23:59:01', '2020-08-27 04:39:29', 1),
-(43, 13, 'Xì gà Café Crème Blue Hộp Giấy', '<p>Th&ocirc;ng tin sản phẩm:<br />\r\n- T&ecirc;n sản phẩm: Caf&eacute; Cr&egrave;me Blue Mini<br />\r\n- Số lượng: 1 hộp/10 điếu x&igrave; g&agrave; Mini<br />\r\n- K&iacute;ch thước: d&agrave;i 78mm, &Oslash; 8.00 mm<br />\r\n- H&igrave;nh dạng: Cigarillo&nbsp;<br />\r\n- Sức mạnh: Nhẹ 2/5<br />\r\n- M&ugrave;i vị: Coffee, kem<br />\r\n- Thương hiệu: Caf&eacute; Cr&egrave;me<br />\r\n- Quốc gia: H&agrave; Lan</p>\r\n\r\n<p>- Đ&oacute;ng g&oacute;i: hộp giấy</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Henry Wintermans &ndash; Đến với d&ograve;ng X&igrave; g&agrave; mini, nếu thật sự ch&uacute;ng ta muốn thưởng thức hương vị truyền thống nhất hoặc đ&atilde; quen với hương vị truyền thống với những d&ograve;ng x&igrave; g&agrave; kh&aacute;c th&igrave; kh&ocirc;ng thể bỏ qua một d&ograve;ng x&igrave; g&agrave; mini đ&oacute; l&agrave; Caf&eacute; Cr&egrave;me Blue , đ&acirc;y ch&iacute;nh l&agrave; loại cigar mini c&oacute; hương vị truyền thống nhất trong d&ograve;ng cigar Caf&eacute; Cr&egrave;me. Hương vị c&oacute; hơi hướng m&ugrave;i ng&aacute;i của x&igrave; g&agrave; ch&iacute;nh hiệu, một ch&uacute;t m&ugrave;i gỗ v&agrave; thơm m&ugrave;i cafe. Một điếu chỉ cần 15p thưởng thức cũng đủ để bạn cảm nhận được những tinh t&uacute;y trong n&oacute;.</p>', 80000, 100, 1, 0, '2020-08-10 23:59:30', '2020-08-10 23:59:30', 0),
-(44, 14, 'Bật lửa xì gà Cohiba', '<p><strong>Th&ocirc;ng tin sản phẩm :</strong></p>\r\n\r\n<p><strong>- T&ecirc;n sản phẩm:</strong>&nbsp;Bật lửa h&uacute;t Cigar Cohiba</p>\r\n\r\n<p><strong>- Nh&atilde;n hiệu:</strong>&nbsp;Cohiba.</p>\r\n\r\n<p><strong>- Loại:&nbsp;</strong>3 tia lửa cực mạnh, c&oacute; thiết bị đục x&igrave; g&agrave;.</p>\r\n\r\n<p><strong>- M&agrave;u sắc:</strong>&nbsp;m&agrave;u đen, m&agrave;u trắng bạc b&oacute;ng.</p>\r\n\r\n<p><strong>- Trọng lượng cả hộp</strong>: 203g.</p>\r\n\r\n<p><strong>- K&iacute;ch thước:</strong>87x30x24mm.</p>\r\n\r\n<p><strong>- Quy c&aacute;ch đ&oacute;ng g&oacute;i:</strong>&nbsp;Full box<strong><em>.</em></strong></p>', 449998, 100, 1, 0, '2020-08-11 00:00:41', '2020-08-26 04:54:38', 3),
-(45, 14, 'Dao cắt xì gà Lubinski N003', '<p>Dao cắt x&igrave; g&agrave; Lubinski N003</p>\r\n\r\n<p>T&igrave;nh trạng: c&ograve;n h&agrave;ng.</p>\r\n\r\n<p>k&iacute;ch thước: cắt v&ograve;ng ring nhỏ cớ điếu thuốc l&aacute; ( lọt c&acirc;y viết b&uacute;t bi) đường k&iacute;nh 8mm</p>', 40000, 100, 1, 0, '2020-08-11 00:01:23', '2020-08-26 04:54:38', 3),
-(46, 14, 'Gạt tàn thuốc xì gà cohiba N001', '<p>K&iacute;ch thước :&nbsp;120x68x25mm<br />\r\nChất liệu: kim loại</p>', 500000, 100, 1, 0, '2020-08-11 00:01:57', '2020-08-11 00:01:57', 0),
-(47, 14, 'Tẩu hút xì gà Thạch Nam N006', '<p>Gi&aacute;: đơn gi&aacute;/c&aacute;i</p>\r\n\r\n<p>Tẩu Xuất xứ T&acirc;y ban nha, h&agrave;ng xịn nha c&aacute;c t&iacute;n đồ</p>\r\n\r\n<p>D&ugrave;ng cho&nbsp;size v&ograve;ng ring&nbsp;từ 40 đến 60.</p>\r\n\r\n<p>Chất liệu ống ngậm: Arcylic</p>\r\n\r\n<p>Cam kết h&agrave;ng chuẩn&nbsp;nếu kh&ocirc;ng đ&uacute;ng xin ho&agrave;n trả lại.</p>\r\n\r\n<p>L&otilde;i trong bằng đồng đảm b&agrave;o d&ugrave;ng bền l&acirc;u v&agrave; chất lượng</p>', 1850000, 100, 1, 0, '2020-08-11 00:02:39', '2020-08-11 00:02:39', 0),
+(43, 13, 'Xì gà Café Crème Blue Hộp Giấy', '<p>Th&ocirc;ng tin sản phẩm:<br />\r\n- T&ecirc;n sản phẩm: Caf&eacute; Cr&egrave;me Blue Mini<br />\r\n- Số lượng: 1 hộp/10 điếu x&igrave; g&agrave; Mini<br />\r\n- K&iacute;ch thước: d&agrave;i 78mm, &Oslash; 8.00 mm<br />\r\n- H&igrave;nh dạng: Cigarillo&nbsp;<br />\r\n- Sức mạnh: Nhẹ 2/5<br />\r\n- M&ugrave;i vị: Coffee, kem<br />\r\n- Thương hiệu: Caf&eacute; Cr&egrave;me<br />\r\n- Quốc gia: H&agrave; Lan</p>\r\n\r\n<p>- Đ&oacute;ng g&oacute;i: hộp giấy</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Henry Wintermans &ndash; Đến với d&ograve;ng X&igrave; g&agrave; mini, nếu thật sự ch&uacute;ng ta muốn thưởng thức hương vị truyền thống nhất hoặc đ&atilde; quen với hương vị truyền thống với những d&ograve;ng x&igrave; g&agrave; kh&aacute;c th&igrave; kh&ocirc;ng thể bỏ qua một d&ograve;ng x&igrave; g&agrave; mini đ&oacute; l&agrave; Caf&eacute; Cr&egrave;me Blue , đ&acirc;y ch&iacute;nh l&agrave; loại cigar mini c&oacute; hương vị truyền thống nhất trong d&ograve;ng cigar Caf&eacute; Cr&egrave;me. Hương vị c&oacute; hơi hướng m&ugrave;i ng&aacute;i của x&igrave; g&agrave; ch&iacute;nh hiệu, một ch&uacute;t m&ugrave;i gỗ v&agrave; thơm m&ugrave;i cafe. Một điếu chỉ cần 15p thưởng thức cũng đủ để bạn cảm nhận được những tinh t&uacute;y trong n&oacute;.</p>', 80000, 100, 1, 0, '2020-08-10 23:59:30', '2020-08-31 07:56:24', 1),
+(44, 14, 'Bật lửa xì gà Cohiba', '<p><strong>Th&ocirc;ng tin sản phẩm :</strong></p>\r\n\r\n<p><strong>- T&ecirc;n sản phẩm:</strong>&nbsp;Bật lửa h&uacute;t Cigar Cohiba</p>\r\n\r\n<p><strong>- Nh&atilde;n hiệu:</strong>&nbsp;Cohiba.</p>\r\n\r\n<p><strong>- Loại:&nbsp;</strong>3 tia lửa cực mạnh, c&oacute; thiết bị đục x&igrave; g&agrave;.</p>\r\n\r\n<p><strong>- M&agrave;u sắc:</strong>&nbsp;m&agrave;u đen, m&agrave;u trắng bạc b&oacute;ng.</p>\r\n\r\n<p><strong>- Trọng lượng cả hộp</strong>: 203g.</p>\r\n\r\n<p><strong>- K&iacute;ch thước:</strong>87x30x24mm.</p>\r\n\r\n<p><strong>- Quy c&aacute;ch đ&oacute;ng g&oacute;i:</strong>&nbsp;Full box<strong><em>.</em></strong></p>', 449998, -5, 1, 0, '2020-08-11 00:00:41', '2020-08-31 09:17:03', 9),
+(45, 14, 'Dao cắt xì gà Lubinski N003', '<p>Dao cắt x&igrave; g&agrave; Lubinski N003</p>\r\n\r\n<p>T&igrave;nh trạng: c&ograve;n h&agrave;ng.</p>\r\n\r\n<p>k&iacute;ch thước: cắt v&ograve;ng ring nhỏ cớ điếu thuốc l&aacute; ( lọt c&acirc;y viết b&uacute;t bi) đường k&iacute;nh 8mm</p>', 40000, 99, 1, 0, '2020-08-11 00:01:23', '2020-08-31 10:41:38', 4),
+(46, 14, 'Gạt tàn thuốc xì gà cohiba N001', '<p>K&iacute;ch thước :&nbsp;120x68x25mm<br />\r\nChất liệu: kim loại</p>', 500000, 99, 1, 0, '2020-08-11 00:01:57', '2020-08-31 10:41:38', 1),
+(47, 14, 'Tẩu hút xì gà Thạch Nam N006', '<p>Gi&aacute;: đơn gi&aacute;/c&aacute;i</p>\r\n\r\n<p>Tẩu Xuất xứ T&acirc;y ban nha, h&agrave;ng xịn nha c&aacute;c t&iacute;n đồ</p>\r\n\r\n<p>D&ugrave;ng cho&nbsp;size v&ograve;ng ring&nbsp;từ 40 đến 60.</p>\r\n\r\n<p>Chất liệu ống ngậm: Arcylic</p>\r\n\r\n<p>Cam kết h&agrave;ng chuẩn&nbsp;nếu kh&ocirc;ng đ&uacute;ng xin ho&agrave;n trả lại.</p>\r\n\r\n<p>L&otilde;i trong bằng đồng đảm b&agrave;o d&ugrave;ng bền l&acirc;u v&agrave; chất lượng</p>', 1850000, 99, 1, 0, '2020-08-11 00:02:39', '2020-08-31 10:41:38', 1),
 (48, 15, 'Thuốc lá Marula Z Bấm', '<p>Đơn H&agrave;ng n&agrave;y được miễn ph&iacute; vận chuyển ( Free ship)</p>\r\n\r\n<p>Đơn gi&aacute;: /c&acirc;y</p>\r\n\r\n<p><strong>Th&ocirc;ng Tin Sản Phẩm:</strong><br />\r\n- Số lượng: 1 g&oacute;i/20 điếu (1 c&acirc;y/10 g&oacute;i)<br />\r\n- Đ&oacute;ng g&oacute;i: Hộp giấy<br />\r\n- Hương vị: Tr&aacute;i c&acirc;y + vị The khi bấm ở c&aacute;n lọc thuốc<br />\r\n- Thời gian h&uacute;t: 5-10 ph&uacute;t<br />\r\n- Thương hiệu: Zest<br />\r\n- Xuất xứ: H&agrave;n quốc</p>\r\n\r\n<p>T&ecirc;n sản phẩm: Marula (Z bấm tr&aacute;i c&acirc;y)</p>\r\n\r\n<p>Vị xo&agrave;i tr&aacute;i c&acirc;y nhiệt đới kết hợp với bạc h&agrave;.</p>\r\n\r\n<p>????ZEST MARULA - d&ograve;ng thuốc bấm HỢP L&Yacute; đến kh&oacute; hiểu<br />\r\n????Zest marula l&agrave; d&ograve;ng sản phẩm mới nhất của h&atilde;ng Zest, một thương hiệu tới từ H&agrave;n Quốc.<br />\r\n????Vẫn l&agrave; một bao Zest đẩy ngang hết sức đặc biệt nhưng Marula c&ograve;n đặc biệt hơn bởi hương vị xo&agrave;i nhiệt đới kết hợp với sự m&aacute;t lạnh tuyệt vời của bạc h&agrave;.<br />\r\n????Nếu ai đ&atilde; quen với những d&ograve;ng thuốc l&aacute; bấm của H&agrave;n quốc th&igrave; hẳn biết tới Africa Rula - c&aacute;i t&ecirc;n đ&atilde; cực nổi v&agrave; quen thuộc tr&ecirc;n thị trường. Bằng một c&aacute;ch n&agrave;o đ&oacute; v&ocirc; t&igrave;nh hay chủ &yacute; của nh&agrave; sản xuất, Zest Marula lại c&oacute; hương vị giống Africa đến kỳ lạ. Chỉ kh&aacute;c ch&uacute;t x&iacute;u l&agrave; Zest c&oacute; vẻ nhẹ hơn.<br />\r\n⚡️Zest Marula h&uacute;t đặc biệt &ecirc;m, kh&ocirc;ng hề kh&eacute;t, kh&eacute;, cổ hay để lại đờm một ch&uacute;t n&agrave;o.<br />\r\nThực sự l&agrave; một sự lựa chọn qu&aacute; xứng đ&aacute;ng khi gi&aacute; của sản phẩm chỉ bằng hơn nửa so với Africa:</p>', 290000, 100, 1, 0, '2020-08-11 00:05:56', '2020-08-27 04:39:51', 3),
-(49, 15, 'DUNHILL ĐỎ DÀI', '<p>Th&ocirc;ng Tin Sản Phẩm:<br />\r\n<br />\r\n- Gi&aacute;: /1 c&acirc;y<br />\r\n- T&ecirc;n sản phẩm: Dunhill (Đỏ D&agrave;i)<br />\r\n- Số lượng: 1 g&oacute;i/20 điếu (1 c&acirc;y/10 g&oacute;i)<br />\r\n- Đ&oacute;ng g&oacute;i: Hộp giấy<br />\r\n- Hương vị: Mộc<br />\r\n- Thời gian h&uacute;t: 5-10 ph&uacute;t<br />\r\n- Xuất xứ: Anh</p>', 550000, 100, 1, 0, '2020-08-11 00:06:33', '2020-08-11 00:06:33', 0),
+(49, 15, 'DUNHILL ĐỎ DÀI', '<p>Th&ocirc;ng Tin Sản Phẩm:<br />\r\n<br />\r\n- Gi&aacute;: /1 c&acirc;y<br />\r\n- T&ecirc;n sản phẩm: Dunhill (Đỏ D&agrave;i)<br />\r\n- Số lượng: 1 g&oacute;i/20 điếu (1 c&acirc;y/10 g&oacute;i)<br />\r\n- Đ&oacute;ng g&oacute;i: Hộp giấy<br />\r\n- Hương vị: Mộc<br />\r\n- Thời gian h&uacute;t: 5-10 ph&uacute;t<br />\r\n- Xuất xứ: Anh</p>', 550000, 100, 1, 0, '2020-08-11 00:06:33', '2020-08-31 08:09:26', 1),
 (50, 15, 'Thuốc lá cuốn tay Drum Bright Blue', '<p>Th&ocirc;ng tin sản phẩm:<br />\r\n- T&ecirc;n SP: Drum Bright Blue<br />\r\n- M&atilde; SP: SP-005<br />\r\n- Trọng lượng: 50g ( cuốn được tầm 80 - 100 điếu )<br />\r\n- Hương vị: Sợi nguy&ecirc;n chất&nbsp;<br />\r\n- Thương hi&ecirc;̣u: Drum<br />\r\n- Sản xuất: H&agrave; Lan<br />\r\n- Thuốc l&aacute; cuốn tay Drum Bright Blue một hương vị thỏa m&atilde;n đến từ một sự kết hợp độc đ&aacute;o của thuốc l&aacute; chất lượng: Bright virginia, burley vị hấp dẫn v&agrave; đậm kentucky</p>', 120000, 100, 1, 0, '2020-08-11 00:34:24', '2020-08-27 04:39:51', 4),
 (51, 15, 'Thuốc lá cuốn tay Mac Baren Double menthol choice #251', '<p>Th&ocirc;ng tin sản phẩm:<br />\r\nKhối lượng: 40g<br />\r\nHương vị: Double bạc h&agrave;( gấp 2 lần bạc h&agrave;)<br />\r\nĐộ nặng: 2/5<br />\r\nThương hiệu.: Mac Baren<br />\r\nXuất xứ: Đan Mạch</p>', 110000, 100, 1, 0, '2020-08-11 00:34:56', '2020-08-11 00:34:56', 0);
 
@@ -394,7 +469,8 @@ INSERT INTO `product_images` (`id`, `product_id`, `path`, `status`, `created_at`
 (79, 49, 'uploads/product/1597133577_5f3253097b3c2.jpg', 1, '2020-08-11 01:12:57', '2020-08-11 01:12:57'),
 (80, 49, 'uploads/product/1597133587_5f3253139c9cf.jpg', 1, '2020-08-11 01:13:07', '2020-08-11 01:13:07'),
 (81, 50, 'uploads/product/1597133711_5f32538f0d866.jpg', 1, '2020-08-11 01:15:11', '2020-08-11 01:15:11'),
-(82, 51, 'uploads/product/1597133763_5f3253c38a295.jpg', 1, '2020-08-11 01:16:03', '2020-08-11 01:16:03');
+(82, 51, 'uploads/product/1597133763_5f3253c38a295.jpg', 1, '2020-08-11 01:16:03', '2020-08-11 01:16:03'),
+(83, 12, 'uploads/product/1598887973_5f4d182545bdf.jpg', 0, '2020-08-31 08:32:53', '2020-08-31 08:32:53');
 
 -- --------------------------------------------------------
 
@@ -456,6 +532,12 @@ ALTER TABLE `ban_xi_gas`
 -- Chỉ mục cho bảng `categories`
 --
 ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `log_users`
+--
+ALTER TABLE `log_users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -524,10 +606,16 @@ ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT cho bảng `log_users`
+--
+ALTER TABLE `log_users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
+
+--
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT cho bảng `news`
@@ -539,13 +627,13 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT cho bảng `order_list`
 --
 ALTER TABLE `order_list`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT cho bảng `order_list_product`
 --
 ALTER TABLE `order_list_product`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
@@ -557,7 +645,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT cho bảng `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT cho bảng `tags`

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/themify-icons.css" type="text/css">
     <link href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" rel="stylesheet">
-{{--    <script src="/js/jquery-1.10.2.min.js"></script>--}}
+    {{--    <script src="/js/jquery-1.10.2.min.js"></script>--}}
     <script type=”text/javascript” src=”https://code.jquery.com/jquery-3.5.1.min.js”></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -106,11 +106,12 @@
                 <span>Welcome!</span>
                 <div class="dropdown">
                     <a href="/List-Cart" class="dropbtn btn btn-outline-info">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <i class="badge badge-danger">
-                                <span id="total-quant-show">{{ Session::has('Cart') ? Session::get('Cart')->totalQuanty :'0' }}</span>
-                            </i>
-                            <span>Giỏ hàng</span>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <i class="badge badge-danger">
+                            <span
+                                id="total-quant-show">{{ Session::has('Cart') ? Session::get('Cart')->totalQuanty :'0' }}</span>
+                        </i>
+                        <span>Giỏ hàng</span>
                     </a>
                     <div class="dropdown-content ">
                         <div id="change-item-cart">
@@ -121,7 +122,8 @@
                                         <tr>
                                             <td style="width: 10px"></td>
                                             <td class="si-pic">
-                                                <img src="/{{ $item['productInfo']->images->first()->path }}" height="100px" width="100px" alt="">
+                                                <img src="/{{ $item['productInfo']->images->first()->path }}"
+                                                     height="100px" width="100px" alt="">
                                             </td>
                                             <td class="si-text">
                                                 <div class="product-selected">
@@ -129,7 +131,8 @@
                                                 </div>
                                             </td>
                                             <td class="si-text" style="width: 35%">
-                                                <p>{{number_format($item['productInfo']->price)}}đ x {{$item['quanty']}} </p>
+                                                <p>{{number_format($item['productInfo']->price)}}đ
+                                                    x {{$item['quanty']}} </p>
                                             </td>
                                             <td class="si-close">
                                                 <i class="ti-close" data-id="{{$item['productInfo']->id}}"></i>
@@ -171,7 +174,8 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                <input type="number" id="total-quanty-cart" hidden value="{{ Session::get('Cart')->totalQuanty }}">
+                                <input type="number" id="total-quanty-cart" hidden
+                                       value="{{ Session::get('Cart')->totalQuanty }}">
                             @endif
 
                         </div>
@@ -290,130 +294,41 @@
                     <div class="panel-heading"><h4>Sản phẩm bán chạy</h4></div>
                     <div class="panel-body">
                         <div class="container">
-                            <div class="thumbnail">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <a href="#" title="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150">
-                                            <img src="/images/6.jpg"
-                                                 alt="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150" height="80px"
-                                                 style="margin-left: 10%">
-                                        </a>
-                                    </div>
-                                    <div class="col-8">
-                                        <a class="text-bold" href="#"
-                                           title="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150">Đầu lọc thuốc lá
-                                            cuốn OCB Virgin</a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div style="padding: 5px 0;">
+                            @foreach($topProducts as $productss)
+                                @foreach($productss as $itemss)
+                                    <div class="thumbnail">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <a href="/detail/{{$itemss->id}}/{{\Str::slug($itemss->name)}}" title="{{ $itemss->name }}">
+                                                    <img src="/{{$itemss->images[0]->path}}"
+                                                         alt="{{ $itemss->name }}"
+                                                         height="80px"
+                                                         style="margin-left: 10%">
+                                                </a>
+                                            </div>
+                                            <div class="col-8">
+                                                <a class="text-bold" href="/detail/{{$itemss->id}}/{{\Str::slug($itemss->name)}}"
+                                                   title="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150">{{ $itemss->name }}</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div style="padding: 5px 0;">
                                                 <span class="money">
-                                                    "80.000"
+                                                    {{ number_format($itemss->price) }}
                                                     <sup>đ</sup>
                                                 </span>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="btn btn-success" href="#"><i class="far fa-eye"></i></a>
-                                            <a class="btn btn-info" href="#"><i class="fa fa-shopping-cart"></i>Đặt
-                                                Hàng</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="thumbnail">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <a href="#" title="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150">
-                                            <img src="/images/6.jpg"
-                                                 alt="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150" height="80px"
-                                                 style="margin-left: 10%">
-                                        </a>
-                                    </div>
-                                    <div class="col-8">
-                                        <a class="text-bold" href="#"
-                                           title="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150">Đầu lọc thuốc lá
-                                            cuốn OCB Virgin</a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div style="padding: 5px 0;">
-                                                <span class="money">
-                                                    "80.000"
-                                                    <sup>đ</sup>
-                                                </span>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="btn btn-success" href="#"><i class="far fa-eye"></i></a>
-                                            <a class="btn btn-info" href="#"><i class="fa fa-shopping-cart"></i>Đặt
-                                                Hàng</a>
+                                                </div>
+                                                <div class="text-center">
+                                                    <a class="btn btn-success" href="/detail/{{$itemss->id}}/{{\Str::slug($itemss->name)}}"><i class="far fa-eye"></i></a>
+                                                    <a class="btn btn-info" onclick="handleCLickAddCart({{$itemss->id}})" href="javascript:"><i class="fa fa-shopping-cart"></i>Đặt
+                                                        Hàng</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="thumbnail">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <a href="#" title="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150">
-                                            <img src="/images/6.jpg"
-                                                 alt="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150" height="80px"
-                                                 style="margin-left: 10%">
-                                        </a>
-                                    </div>
-                                    <div class="col-8">
-                                        <a class="text-bold" href="#"
-                                           title="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150">Đầu lọc thuốc lá
-                                            cuốn OCB Virgin</a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div style="padding: 5px 0;">
-                                                <span class="money">
-                                                    "80.000"
-                                                    <sup>đ</sup>
-                                                </span>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="btn btn-success" href="#"><i class="far fa-eye"></i></a>
-                                            <a class="btn btn-info" href="#"><i class="fa fa-shopping-cart"></i>Đặt
-                                                Hàng</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="thumbnail">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <a href="#" title="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150">
-                                            <img src="/images/6.jpg"
-                                                 alt="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150" height="80px"
-                                                 style="margin-left: 10%">
-                                        </a>
-                                    </div>
-                                    <div class="col-8">
-                                        <a class="text-bold" href="#"
-                                           title="Đầu lọc thuốc lá cuốn OCB Virgin Filter Slim 150">Đầu lọc thuốc lá
-                                            cuốn OCB Virgin</a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div style="padding: 5px 0;">
-                                                <span class="money">
-                                                    "80.000"
-                                                    <sup>đ</sup>
-                                                </span>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="btn btn-success" href="#"><i class="far fa-eye"></i></a>
-                                            <a class="btn btn-info" href="#"><i class="fa fa-shopping-cart"></i>Đặt
-                                                Hàng</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                @endforeach
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -429,25 +344,7 @@
                                     <i class="fa fa-bolt fa-lg fa-horizon pl-4"></i>
                                     <span>Đang truy cập</span>
                                 </div>
-                                <span class="pr-3">4</span>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-12 d-flex justify-content-between">
-                                <div>
-                                    <i class="fa fa-user fa-lg fa-horizon pl-4"></i>
-                                    <span>Thành viên online</span>
-                                </div>
-                                <span class="pr-3">1</span>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-12 d-flex justify-content-between">
-                                <div>
-                                    <i class="fa fa-magic fa-lg fa-horizon pl-4"></i>
-                                    <span>Khách viếng thăm</span>
-                                </div>
-                                <span class="pr-3">6</span>
+                                <span class="pr-3">{{ $webJoin[0] }}</span>
                             </div>
                         </div>
                         <div class="row justify-content-between">
@@ -456,7 +353,16 @@
                                     <i class="fa fa-bullseye fa-lg fa-horizon pl-4"></i>
                                     <span>Hôm nay</span>
                                 </div>
-                                <span class="pr-3">610</span>
+                                <span class="pr-3">{{ $webJoin[1] }}</span>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-12 d-flex justify-content-between">
+                                <div>
+                                    <i class="fa fa-filter fa-lg fa-horizon pl-4"></i>
+                                    <span>Trong tuần này</span>
+                                </div>
+                                <span class="pr-3">{{ $webJoin[2] }}</span>
                             </div>
                         </div>
                         <div class="row justify-content-between">
@@ -465,9 +371,8 @@
                                     <i class="fa fa-filter fa-lg fa-horizon pl-4"></i>
                                     <span>Tháng hiện tại</span>
                                 </div>
-                                <span class="pr-3">42,414</span>
+                                <span class="pr-3">{{ $webJoin[3] }}</span>
                             </div>
-
                         </div>
                         <div class="row">
                             <div class="col-12 d-flex justify-content-between">
@@ -475,16 +380,7 @@
                                     <i class="far fa-calendar fa-lg fa-horizon pl-4"></i>
                                     <span>Tổng lượt truy cập</span>
                                 </div>
-                                <span class="pr-3">1,046,406</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-between">
-                                <div>
-                                    <i class="fa fa-bars fa-lg fa-horizon pl-4"></i>
-                                    <span>Tổng lượt truy cập</span>
-                                </div>
-                                <span class="pr-3">1,046,406</span>
+                                <span class="pr-3">{{ $webJoin[4] }}</span>
                             </div>
                         </div>
                     </div>
@@ -540,9 +436,5 @@
 </div>
 <script type="text/javascript" src="/js/javascript.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script>
-
-</script>
 </body>
-<script type="text/javascript" src="/js/javascript.js"></script>
 </html>

@@ -101,7 +101,7 @@
                             <li class="cart-total">Tổng giá: <span id="payment">{{ number_format(Session::get('Cart')->totalPrice) }}đ</span>
                             </li>
                         </ul>
-                        <button style="width: 100%" class="proceed-btn" id="check-out"> CHECK OUT →</button>
+                        <button style="width: 100%" class="proceed-btn" id="send-order"> Send Order →</button>
                     @endif
                 </div>
         </div>
@@ -146,11 +146,11 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/main.js"></script>
     <script>
-        $("#check-out").on('click', function(e) {
+        $("#send-order").on('click', function(e) {
             e.preventDefault();
             $.ajax({
                 type: 'post',
-                url: '/Check-out',
+                url: '/Send-Order',
                 data: {
                     "_token": "{{ csrf_token() }}",
                     name: $("#txtName").val(),
@@ -170,7 +170,6 @@
                 },
             });
         })
-
     </script>
 </body>
 
