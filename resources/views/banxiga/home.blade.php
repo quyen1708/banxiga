@@ -1,5 +1,8 @@
 @extends('banxiga.layout')
 @section('contentOne')
+{{--    @if (Session::has('message'))--}}
+{{--        <div class="alert alert-success">{{ Session::get('message') }}</div>--}}
+{{--    @endif--}}
         @foreach ($products as $item)
             <div class="col-md-12">
                 <hr>
@@ -36,3 +39,13 @@
             </div>
         @endforeach
 @endsection
+
+<script>
+    window.onload = function() {
+        var message = "<?php echo Session::get('message') ?>";
+        console.log(message);
+        if(message) {
+            alert(message);
+        }
+    }
+</script>

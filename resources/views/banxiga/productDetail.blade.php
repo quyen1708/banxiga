@@ -23,6 +23,7 @@
                     <div class="col-7">
                         <h3>{{ $products->name }}</h3>
                         <h5>{{ number_format($products->price) }}đ</h5>
+                        <h5>Số lượng còn lại: {{ number_format($products->amont) }}</h5>
                         <br>
                         {!! $products->description !!}
                         <a onclick="handleCLickAddCart({{$products->id}})" href="javascript:" class="addtocart btn-secondary"><i class="fas fa-heart"></i> Add to Cart</a>

@@ -19,6 +19,7 @@
             <i class="ti-close" data-id="{{$item['productInfo']->id}}"></i>
         </td>
         <td style="width: 10px"></td>
+
     </tr>
     <tr>
         <td>

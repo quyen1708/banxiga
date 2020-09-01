@@ -19,6 +19,12 @@ class CheckCart
         if (\Session::has("Cart") == null || \Session::get('Cart')->totalQuanty == 0) {
             return redirect('/home');
         }
+        foreach(\Session::get('Cart')->products as $item){
+            if($item['amont'] < 0){
+                \Session::flash('message', 'Sản phẩm ' .$item['productInfo']->name. ' không còn đủ số lượng');
+                return redirect('/home');
+            }
+        }
         return $next($request);
     }
 }
