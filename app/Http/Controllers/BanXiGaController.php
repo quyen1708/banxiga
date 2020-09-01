@@ -177,10 +177,11 @@ class BanXiGaController extends Controller
             $logUser->ip = $request->ip();
             $logUser->useragent = $request->server('HTTP_USER_AGENT');
             $logUser->save();
-        }else{
-            LogUser::query()->where('ip', $request->ip())->orderBy('id', 'DESC')->first()
-                ->update(['updated_at' => $date]);
         }
+//        else{
+//            LogUser::query()->where('ip', $request->ip())->orderBy('id', 'DESC')->first()
+//                ->update(['updated_at' => $date]);
+//        }
         $products[] = Products::query()
             ->where('amont','>',0)
             ->with('images')
