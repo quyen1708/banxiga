@@ -28,7 +28,6 @@ class Cart
         }
         $newProduct['quanty']++;
         $newProduct['price'] = $newProduct['quanty'] * $product->price;
-        $newProduct['amont']--;
         $this->products[$id] = $newProduct;
         $this->totalPrice += $product->price;
         $this->totalQuanty++;
@@ -45,10 +44,8 @@ class Cart
     {
         $this->totalQuanty -= $this->products[$id]['quanty'];
         $this->totalPrice -= $this->products[$id]['price'];
-
         $this->products[$id]['quanty'] = $quanty;
         $this->products[$id]['price'] = $quanty * $this->products[$id]['productInfo']->price;
-
         $this->totalQuanty += $this->products[$id]['quanty'];
         $this->totalPrice += $this->products[$id]['price'];
     }

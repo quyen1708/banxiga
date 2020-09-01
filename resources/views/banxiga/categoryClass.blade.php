@@ -8,7 +8,6 @@
             <h2 class="pl-3">{{ $item->first()->category->name }}:</h2>
             <hr>
         </div>
-        <div class="row padding">
             @foreach($item as $ele)
                 <div class="col-md-4">
                     <div class="card">
@@ -34,7 +33,6 @@
                     </div>
                 </div>
             @endforeach
-        </div>
         <div class="col-12 ml-3">
             <br>
             {!! $item->appends(Request::except('page'))->render() !!}

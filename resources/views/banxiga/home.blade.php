@@ -9,7 +9,6 @@
                 <h2 class="pl-3">{{ $item->first()->category->name }}:</h2>
                 <hr>
             </div>
-            <div class="row padding">
             @foreach($item as $ele)
                     <div class="col-md-4">
                         <div class="card">
@@ -36,7 +35,6 @@
                         </div>
                     </div>
             @endforeach
-            </div>
         @endforeach
 @endsection
 
