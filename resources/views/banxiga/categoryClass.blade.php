@@ -14,7 +14,7 @@
                         <div class="grid">
                             <figure class="effect-julia">
                                 <img src="/{{ $ele->images[0]->path }}" height="400px" alt=""/>
-                                <figcaption>
+                                <figcaption> <span class="badge badge-danger">{{ Session::has('Cart') ? Session::get('Cart')->products[$ele->id]['quanty'] :'0' }}</span>
                                     <a href="/detail/{{$ele->id}}/{{\Str::slug($ele->name)}}">View more</a>
                                 </figcaption>
                             </figure>
@@ -26,7 +26,6 @@
                                 <span>Mua ngay</span>
                             </a>
                             <a onclick="handleCLickAddCart({{$ele->id}})" href="javascript:" class="btn btn-outline-info ml-3"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                <span class="badge badge-danger">0</span>
                                 <span>Add to card</span>
                             </a>
                         </div>

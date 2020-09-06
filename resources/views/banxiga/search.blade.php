@@ -33,7 +33,6 @@
                                 <span>Mua ngay</span>
                             </a>
                             <a onclick="handleCLickAddCart({{$item->id}})" href="javascript:" class="btn btn-outline-info ml-3"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                <span class="badge badge-danger">0</span>
                                 <span>Add to card</span>
                             </a>
                         </div>

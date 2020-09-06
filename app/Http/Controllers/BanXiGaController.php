@@ -12,6 +12,7 @@ use App\Models\Products;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Cart;
+use MongoDB\Driver\Session;
 
 
 class BanXiGaController extends Controller
@@ -126,6 +127,8 @@ class BanXiGaController extends Controller
             ->get();
 
 //        dd($topProducts);
+//        $aa= \Session::get('Cart')->products->product;
+//        dd($aa);
         return view('/banxiga/home', [
             'webJoin' => $webJoin,
             'topProducts' => $topProducts,
